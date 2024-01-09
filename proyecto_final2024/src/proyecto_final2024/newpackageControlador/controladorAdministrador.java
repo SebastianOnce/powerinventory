@@ -84,17 +84,9 @@ public class controladorAdministrador {
     }
     
     public void enviarDatos(){
-        try {
-           
-            vista.getTxtusuario().setText(usuario2);
-            vista.getjPasswordFieldcontra().setText(contraseña2);
-            vista.getTxtcedula().setText(cedula2);
-            
-            
-        }catch(ParseException ex){
-            java.util.logging.Logger.getLogger(controladorPersonas.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
+        vista.getTxtusuario().setText(usuario2);
+        vista.getjPasswordFieldcontra().setText(contraseña2);
+        vista.getTxtcedula().setText(cedula2);
 
     }
     
