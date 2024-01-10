@@ -88,7 +88,12 @@ public class ModeloAdministrador extends Administrador {
 
     public SQLException modificarPersona() {
         String sql;
-        sql = "UPDATE public.administrador SET usuario='" + getUsuario() + "', contraseña='" + getContraseña() + "'";
+        String sql2;
+        sql = "UPDATE public.administrador SET usuario='" + getUsuario() + "', contrasena='" + getContraseña() + "' WHERE cedula ='"+controladorAdministrador.cedula2+"' " ;
+        
+        sql2 = "UPDATE public.persona\n" +
+"	SET  cedula='" + getCedula() + "', nombres='" + getNombres() + "', apellidos='" + getApellidos() + "', direccion='" + getDireccion() + "', genero= '" + getGenero() + "', telefono= '" + getTelefono() + "', fecha_nacimiento= '" + getFecha_nacimiento() + "' WHERE cedula ='"+controladorAdministrador.cedula2+"' ";
+        cpg.accionDB(sql2);
         return cpg.accionDB(sql);//DEVUELVO NULL SI ES CORRECTO.
 
     }

@@ -142,6 +142,7 @@ public class controladorAdministrador {
 
     public void grabarAdministrador() {
 
+        if (vista.getjDialog1().getTitle().contentEquals("CREAR NUEVO ADMINISTRADOR")) {
         String cedula = vista.getTxtcedula().getText();
         String nombres = vista.getTxtnombres().getText();
         String apellidos = vista.getTxtapellidos().getText();
@@ -169,6 +170,37 @@ public class controladorAdministrador {
             JOptionPane.showMessageDialog(null, "Cliente creado con exito");
         } else {
             JOptionPane.showMessageDialog(null, "No se pudo crear el Cliente");
+        }
+        
+        } else if (vista.getjDialog1().getTitle().contentEquals("EDITAR PERSONA")) {
+            String cedula = vista.getTxtcedula().getText();
+        String nombres = vista.getTxtnombres().getText();
+        String apellidos = vista.getTxtapellidos().getText();
+        String direccion = vista.getTxtdireccion().getText();
+        String genero = vista.getTxtgenero().getText();
+        String telefono = vista.getTxttelefono().getText();
+        java.util.Date fehca = vista.getdtfecha().getDate();;
+        long auxfecha_Nacimiento = fehca.getTime();
+        java.sql.Date fecha = new java.sql.Date(auxfecha_Nacimiento);
+        String usuario = vista.getTxtusuario().getText();
+        String contrasena = vista.getpwContrasena().getText();
+
+        ModeloAdministrador per = new ModeloAdministrador();
+        per.setCedula(cedula);
+        per.setNombres(nombres);
+        per.setApellidos(apellidos);
+        per.setDireccion(direccion);
+        per.setGenero(genero);
+        per.setTelefono(telefono);
+        per.setFecha_nacimiento(fecha);
+        per.setUsuario(usuario);
+        per.setContraseña(contrasena);
+
+        if (per.modificarPersona() == null) {
+            JOptionPane.showMessageDialog(null, "Administrador modificado con exito");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo modiciar al administrador");
+        }
         }
     }
 
