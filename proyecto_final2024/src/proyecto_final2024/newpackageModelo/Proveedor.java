@@ -16,6 +16,7 @@ public class Proveedor extends Persona{
     private String id_empresa;
     private String cedula;
 
+    
     public Proveedor() {
         super();
     }

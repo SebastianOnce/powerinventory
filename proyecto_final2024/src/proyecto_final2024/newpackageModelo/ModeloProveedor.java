@@ -74,7 +74,32 @@ public class ModeloProveedor extends Proveedor{
             Logger.getLogger(ModeloAdministrador.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+    }
+    
+    public static List<Empresa> llenarEmpresas(){
+        Conexion cpg = new Conexion();
+        List<Empresa> listaProveedor = new ArrayList<>();
 
+        String sql;
+        sql = "SELECT id_empresa, nombre_empresa, descripcio_empresa FROM public.empresa";
+        ResultSet rs = cpg.consultaDB(sql);
+        try {
+            while (rs.next()) {
+                Empresa provee = new Empresa();
+                
+                provee.setId_empresa(rs.getInt("id_empresa"));
+                provee.setNombre_empresa(rs.getString("nombre_empresa"));
+                provee.setDescripcion_empresa(rs.getString("descripcio_empresa"));
+                listaProveedor.add(provee);
+            }
+
+            rs.close();
+            return listaProveedor;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ModeloAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
     
 }

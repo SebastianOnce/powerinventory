@@ -4,10 +4,12 @@
  */
 package proyecto_final2024.newpackageControlador;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyecto_final2024.newpackageModelo.Administrador;
+import proyecto_final2024.newpackageModelo.Empresa;
 import proyecto_final2024.newpackageModelo.ModeloAdministrador;
 import proyecto_final2024.newpackageModelo.ModeloProveedor;
 import proyecto_final2024.newpackageModelo.Proveedor;
@@ -29,6 +31,7 @@ public class controladorProveedor {
     }
     
     public void inicarControladorCliente(){
+        listaEmpresas();
         listarProveedores();
         vista.getBtnCREAR().addActionListener(l->abrirDialogo(true));
         vista.getBtnGuardar().addActionListener(l->grabarProveedor());
@@ -120,6 +123,12 @@ public class controladorProveedor {
             String[] rowData = {admin.getId_proveedor(), admin.getCedula(), admin.getNombres(), admin.getApellidos(), admin.getDireccion(), admin.getGenero(), admin.getTelefono(), String.valueOf(admin.getFecha_nacimiento()), admin.getId_empresa()};
             mTabla.addRow(rowData);
         });
-
+    }
+    
+    public void listaEmpresas(){
+        List<Empresa> listaEmpresas = ModeloProveedor.llenarEmpresas();
+        for (int i = 0; i < listaEmpresas.size(); i++) {
+            vista.getCmbIdEmpresa().addItem(listaEmpresas.get(i).getNombre_empresa());
+        }
     }
 }
