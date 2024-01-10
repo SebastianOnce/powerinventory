@@ -19,7 +19,7 @@ public class Empresa {
     }
 
     
-    
+   
     public Empresa(int id_empresa, String nombre_empresa, String descripcion_empresa) {
         this.id_empresa = id_empresa;
         this.nombre_empresa = nombre_empresa;
