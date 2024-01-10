@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyecto_final2024.newpackageModelo;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.sql.ResultSet;
@@ -11,95 +12,113 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import proyecto_final2024.newpackageControlador.controladorAdministrador;
+
 /**
  *
  * @author elshi
  */
-public class ModeloAdministrador extends Administrador{
-    
+public class ModeloAdministrador extends Administrador {
+
     Conexion cpg = new Conexion();
 
     public ModeloAdministrador() {
     }
-    
-    public SQLException grabarAdministrador(){
-        
-        
-        
+
+    public SQLException grabarAdministrador() {
         String sql;
-        
-        sql = "INSERT INTO public.administrador	(usuario, contraseña, cedula)"
-                + "VALUES( '"+getUsuario()+"', '"+getCedula()+"')";
+        String sql2;
+
+        sql = "INSERT INTO public.administrador (usuario, contrasena, cedula)"
+                + " VALUES ('" + getUsuario() + "', '" + getContraseña() + "', '" + getCedula() + "')";
+
+        sql2 = "INSERT INTO public.persona (cedula, nombres, apellidos, direccion, genero, telefono, fecha_nacimiento)"
+                + " VALUES ('" + getCedula() + "', '" + getNombres() + "', '" + getApellidos() + "', '" + getDireccion() + "', '" + getGenero() + "', '" + getTelefono() + "', '" + getFecha_nacimiento() + "')";
+
+        cpg.accionDB(sql2);
         return cpg.accionDB(sql);
+
     }
-    
-    public static List<Administrador>listarAdministrador(){
-        
+
+    public static List<Administrador> listarAdministrador() {
+
         Conexion cpg = new Conexion();
         List<Administrador> listaAdministrador = new ArrayList<Administrador>();
-        
+
         String sql;
-        sql = "SELECT id_administrador, usuario, contraseña, cedula FROM administrador";
+        sql = "SELECT a.id_administrador, a.usuario, a.contrasena, a.cedula, p.nombres,p.apellidos, p.direccion, p.genero, p.telefono,p.fecha_nacimiento FROM public.administrador a JOIN public.persona p ON a.cedula = p.cedula";
         ResultSet rs = cpg.consultaDB(sql);
-        
+
         try {
-            while(rs.next()){
-                
+            while (rs.next()) {
+
                 Administrador admin = new Administrador();
-                
-                
+
                 admin.setId_administrador(rs.getString("id_administrador"));
                 admin.setUsuario(rs.getString("usuario"));
-                admin.setContraseña(rs.getString("contraseña"));
+                admin.setContraseña(rs.getString("contrasena"));
                 admin.setCedula(rs.getString("cedula"));
+                admin.setNombres(rs.getString("nombres"));
+                admin.setApellidos(rs.getString("apellidos"));
+                admin.setDireccion(rs.getString("direccion"));
+                admin.setGenero(rs.getString("genero"));
+                admin.setTelefono(rs.getString("telefono"));
+                admin.setFecha_nacimiento(rs.getDate("fecha_nacimiento"));
                 
+
                 listaAdministrador.add(admin);
-                
+
             }
-            
+
             rs.close();
             return listaAdministrador;
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ModeloAdministrador.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-        
-        
+
     }
-    
+
     public SQLException eliminarAdministrador() {
         String sql;
-        sql = "DELETE FROM public.administrador where = id_administrador'"+ controladorAdministrador.id_admin2+"'";
+        sql = "DELETE FROM public.administrador where = id_administrador'" + controladorAdministrador.id_admin2 + "'";
         return cpg.accionDB(sql);//DEVUELVO NULL SI ES CORRECTO.
 
     }
-    
+
     public SQLException modificarPersona() {
         String sql;
-        sql = "UPDATE public.administrador SET usuario='"+getUsuario()+"', contraseña='"+getContraseña()+"'";
+        sql = "UPDATE public.administrador SET usuario='" + getUsuario() + "', contraseña='" + getContraseña() + "'";
         return cpg.accionDB(sql);//DEVUELVO NULL SI ES CORRECTO.
 
     }
-    
-    public static List<Administrador> administradorBuscado(){
-        
+
+    public static List<Administrador> administradorBuscado() {
+
         Conexion cpg = new Conexion();
         List<Administrador> listaAdmin = new ArrayList<Administrador>();
-        
+
         String sql;
-        sql = "SELECT id_administrador, usuario, contraseña, cedula FROM administrador WHERE id_administrador = '"+controladorAdministrador.id_admin2+"'";
+        sql = "SELECT a.id_administrador, a.usuario, a.contrasena, a.cedula, p.nombres,p.apellidos, p.direccion, p.genero, p.telefono,p.fecha_nacimiento FROM public.administrador a JOIN public.persona p ON a.cedula = p.cedula WHERE a.cedula like '"+controladorAdministrador.adminBuscar+ "%'";
         ResultSet rs = cpg.consultaDB(sql);
-        
+
         try {
-            while(rs.next()){
+            while (rs.next()) {
                 Administrador admin = new Administrador();
+
                 admin.setId_administrador(rs.getString("id_administrador"));
                 admin.setUsuario(rs.getString("usuario"));
-                admin.setContraseña(rs.getString("contraseña"));
+                admin.setContraseña(rs.getString("contrasena"));
+                admin.setCedula(rs.getString("cedula"));
+                admin.setNombres(rs.getString("nombres"));
+                admin.setApellidos(rs.getString("apellidos"));
+                admin.setDireccion(rs.getString("direccion"));
+                admin.setGenero(rs.getString("genero"));
+                admin.setTelefono(rs.getString("telefono"));
+                admin.setFecha_nacimiento(rs.getDate("fecha_nacimiento"));
                 
                 listaAdmin.add(admin);
-                
+
             }
             rs.close();
             return listaAdmin;
@@ -108,9 +127,7 @@ public class ModeloAdministrador extends Administrador{
             Logger.getLogger(ModeloAdministrador.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-        
-        
+
     }
-    
-    
+
 }

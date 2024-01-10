@@ -50,8 +50,9 @@ public class VistaAdministrador extends javax.swing.JFrame {
         txtgenero = new javax.swing.JTextField();
         txttelefono = new javax.swing.JTextField();
         txtusuario = new javax.swing.JTextField();
-        jDateChooserfechanaci = new com.toedter.calendar.JDateChooser();
-        jPasswordFieldcontra = new javax.swing.JPasswordField();
+        dtFecha = new com.toedter.calendar.JDateChooser();
+        pswContrasena = new javax.swing.JPasswordField();
+        btnGuardar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnCREAR = new javax.swing.JButton();
@@ -98,8 +99,11 @@ public class VistaAdministrador extends javax.swing.JFrame {
         jDialog1.getContentPane().add(txtgenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 220, -1));
         jDialog1.getContentPane().add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 220, -1));
         jDialog1.getContentPane().add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 220, -1));
-        jDialog1.getContentPane().add(jDateChooserfechanaci, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 310, -1));
-        jDialog1.getContentPane().add(jPasswordFieldcontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 220, -1));
+        jDialog1.getContentPane().add(dtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 310, -1));
+        jDialog1.getContentPane().add(pswContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 220, -1));
+
+        btnGuardar.setText("Guardar");
+        jDialog1.getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 490, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -138,9 +142,7 @@ public class VistaAdministrador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -154,11 +156,11 @@ public class VistaAdministrador extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnACTUALIZAR))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(txtBUSCAR)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBUSCAR)
-                        .addGap(42, 42, 42))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtBUSCAR, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(btnBUSCAR)))
+                        .addGap(42, 701, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,10 +178,10 @@ public class VistaAdministrador extends javax.swing.JFrame {
                     .addComponent(btnACTUALIZAR))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 610));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -204,12 +206,12 @@ public class VistaAdministrador extends javax.swing.JFrame {
         return btnELIMINAR;
     }
 
-    public JDateChooser getjDateChooserfechanaci() {
-        return jDateChooserfechanaci;
+    public JDateChooser getdtfecha() {
+        return dtFecha;
     }
 
-    public JPasswordField getjPasswordFieldcontra() {
-        return jPasswordFieldcontra;
+    public JPasswordField getpwContrasena() {
+        return pswContrasena;
     }
 
     public JTable getjTableAdmin() {
@@ -251,7 +253,12 @@ public class VistaAdministrador extends javax.swing.JFrame {
     public JDialog getjDialog1() {
         return jDialog1;
     }
+
+    public JButton getBtnGuardar() {
+        return btnGuardar;
+    }
   
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnACTUALIZAR;
@@ -259,7 +266,8 @@ public class VistaAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton btnCREAR;
     private javax.swing.JButton btnEDITAR;
     private javax.swing.JButton btnELIMINAR;
-    private com.toedter.calendar.JDateChooser jDateChooserfechanaci;
+    private javax.swing.JButton btnGuardar;
+    private com.toedter.calendar.JDateChooser dtFecha;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -272,9 +280,9 @@ public class VistaAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordFieldcontra;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAdmin;
+    private javax.swing.JPasswordField pswContrasena;
     private javax.swing.JTextField txtBUSCAR;
     private javax.swing.JTextField txtapellidos;
     private javax.swing.JTextField txtcedula;
