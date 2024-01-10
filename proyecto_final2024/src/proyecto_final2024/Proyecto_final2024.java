@@ -20,9 +20,13 @@ public class Proyecto_final2024 {
      */
     public static void main(String[] args) {
         
-       VistaProveedor vista = new VistaProveedor();
-       controladorProveedor control = new controladorProveedor(vista);
-       control.inicarControladorCliente();
+//       VistaProveedor vista = new VistaProveedor();
+//       controladorProveedor control = new controladorProveedor(vista);
+//       control.inicarControladorCliente();
+       
+        VistaAdministrador vista = new VistaAdministrador();
+       controladorAdministrador control = new controladorAdministrador(vista);
+       control.iniciaControl();
     }
     
 }

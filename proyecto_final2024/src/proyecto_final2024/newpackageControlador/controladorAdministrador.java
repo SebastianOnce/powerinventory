@@ -40,6 +40,7 @@ public class controladorAdministrador {
         this.vista = vista;
         vista.setVisible(true);
         vista.setLocationRelativeTo(null);
+        vista.setTitle("Power inventory Administrador");
     }
 
     public void iniciaControl() {
@@ -161,6 +162,7 @@ public class controladorAdministrador {
 
             if (per.grabarAdministrador() == null) {
                 JOptionPane.showMessageDialog(null, "Cliente creado con exito");
+                listarAdministrador();
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo crear el Cliente");
             }
@@ -191,6 +193,7 @@ public class controladorAdministrador {
 
             if (per.modificarPersona() == null) {
                 JOptionPane.showMessageDialog(null, "Administrador modificado con exito");
+                listarAdministrador();
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo modiciar al administrador");
             }
@@ -211,7 +214,7 @@ public class controladorAdministrador {
 
     public void eliminarAdmin() {
         ModeloAdministrador admin = new ModeloAdministrador();
-        if (admin.eliminarAdministrador()== null) {
+        if (admin.eliminarAdministrador()== null && admin.eliminarPersona()== null) {
             JOptionPane.showMessageDialog(null, "administrador eliminada con exito");
             listarAdministrador();
         } else {

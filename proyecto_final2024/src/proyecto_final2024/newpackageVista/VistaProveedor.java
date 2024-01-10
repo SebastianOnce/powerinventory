@@ -108,7 +108,7 @@ public class VistaProveedor extends javax.swing.JFrame {
             .addGap(0, 31, Short.MAX_VALUE)
         );
 
-        cmbIdEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cmbIdEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1" }));
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);

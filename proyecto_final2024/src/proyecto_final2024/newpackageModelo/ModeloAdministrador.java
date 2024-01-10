@@ -77,12 +77,13 @@ public class ModeloAdministrador extends Administrador {
 
     public SQLException eliminarAdministrador() {
         String sql;
-        String sql2;
         sql = "DELETE FROM public.administrador where cedula = '" + controladorAdministrador.cedula2 + "'";
-        sql2 = "DELETE FROM public.persona where cedula = '" + controladorAdministrador.cedula2 + "'";
-        cpg.accionDB(sql);
-        return cpg.accionDB(sql2);//DEVUELVO NULL SI ES CORRECTO.
-
+        return cpg.accionDB(sql);//DEVUELVO NULL SI ES CORRECTO.
+    }
+    public SQLException eliminarPersona() {
+        String sql;
+        sql = "DELETE FROM public.persona where cedula = '" + controladorAdministrador.cedula2 + "'";
+        return cpg.accionDB(sql);//DEVUELVO NULL SI ES CORRECTO.
     }
 
     public SQLException modificarPersona() {
