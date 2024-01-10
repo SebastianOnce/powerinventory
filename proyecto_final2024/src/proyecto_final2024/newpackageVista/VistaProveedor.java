@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  *
  * @author elshi
  */
-public class VistaProveedor extends javax.swing.JFrame {
+public class VistaProveedor extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form VistaAdministrador
