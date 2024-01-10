@@ -5,7 +5,9 @@
 package proyecto_final2024;
 
 import proyecto_final2024.newpackageControlador.controladorAdministrador;
+import proyecto_final2024.newpackageControlador.controladorProveedor;
 import proyecto_final2024.newpackageVista.VistaAdministrador;
+import proyecto_final2024.newpackageVista.VistaProveedor;
 
 /**
  *
@@ -18,9 +20,9 @@ public class Proyecto_final2024 {
      */
     public static void main(String[] args) {
         
-       VistaAdministrador vista = new VistaAdministrador();
-       controladorAdministrador control = new controladorAdministrador(vista);
-       control.iniciaControl();
+       VistaProveedor vista = new VistaProveedor();
+       controladorProveedor control = new controladorProveedor(vista);
+       control.inicarControladorCliente();
     }
     
 }

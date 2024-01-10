@@ -26,8 +26,8 @@ public class Producto extends Proveedor{
         super();
     }
 
-    public Producto(String id_producto, String nombre_producto, String codigo_del_proveedor, String descripcion_producto, String precio_de_compra, String precio_de_venta, int cantidad_en_bodega, String disponibilidad, Byte foto_producto, String id_proveedor, String nombre_proveedor, String ruc_proveedor, String id_persona, String cedula, String nombres, String apellidos, String direccion, String genero, String telefono, Date fecha_nacimiento) {
-        super(id_proveedor, nombre_proveedor, ruc_proveedor, id_persona, cedula, nombres, apellidos, direccion, genero, telefono, fecha_nacimiento);
+    public Producto(String id_producto, String nombre_producto, String codigo_del_proveedor, String descripcion_producto, String precio_de_compra, String precio_de_venta, int cantidad_en_bodega, String disponibilidad, Byte foto_producto, String id_proveedor, String id_empresa, String id_persona, String cedula, String nombres, String apellidos, String direccion, String genero, String telefono, Date fecha_nacimiento) {
+        super(id_proveedor, id_empresa, id_persona, cedula, nombres, apellidos, direccion, genero, telefono, fecha_nacimiento);
         this.id_producto = id_producto;
         this.nombre_producto = nombre_producto;
         this.codigo_del_proveedor = codigo_del_proveedor;
@@ -38,6 +38,10 @@ public class Producto extends Proveedor{
         this.disponibilidad = disponibilidad;
         this.foto_producto = foto_producto;
     }
+
+    
+
+    
 
     public String getId_producto() {
         return id_producto;

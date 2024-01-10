@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyecto_final2024.newpackageModelo;
 
 import java.sql.SQLException;
@@ -81,8 +77,11 @@ public class ModeloAdministrador extends Administrador {
 
     public SQLException eliminarAdministrador() {
         String sql;
-        sql = "DELETE FROM public.administrador where = id_administrador'" + controladorAdministrador.id_admin2 + "'";
-        return cpg.accionDB(sql);//DEVUELVO NULL SI ES CORRECTO.
+        String sql2;
+        sql = "DELETE FROM public.administrador where cedula = '" + controladorAdministrador.cedula2 + "'";
+        sql2 = "DELETE FROM public.persona where cedula = '" + controladorAdministrador.cedula2 + "'";
+        cpg.accionDB(sql);
+        return cpg.accionDB(sql2);//DEVUELVO NULL SI ES CORRECTO.
 
     }
 

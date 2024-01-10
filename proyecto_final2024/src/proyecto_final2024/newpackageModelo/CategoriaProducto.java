@@ -20,15 +20,13 @@ public class CategoriaProducto extends Producto{
         super();
     }
 
-    public CategoriaProducto(String nombre_categoria, String descripcion_categoria, String id_categoria, String id_producto, String nombre_producto, String codigo_del_proveedor, String descripcion_producto, String precio_de_compra, String precio_de_venta, int cantidad_en_bodega, String disponibilidad, Byte foto_producto, String id_proveedor, String nombre_proveedor, String ruc_proveedor, String id_persona, String cedula, String nombres, String apellidos, String direccion, String genero, String telefono, Date fecha_nacimiento) {
-        super(id_producto, nombre_producto, codigo_del_proveedor, descripcion_producto, precio_de_compra, precio_de_venta, cantidad_en_bodega, disponibilidad, foto_producto, id_proveedor, nombre_proveedor, ruc_proveedor, id_persona, cedula, nombres, apellidos, direccion, genero, telefono, fecha_nacimiento);
+    public CategoriaProducto(String nombre_categoria, String descripcion_categoria, String id_categoria, String id_producto, String nombre_producto, String codigo_del_proveedor, String descripcion_producto, String precio_de_compra, String precio_de_venta, int cantidad_en_bodega, String disponibilidad, Byte foto_producto, String id_proveedor, String id_empresa, String id_persona, String cedula, String nombres, String apellidos, String direccion, String genero, String telefono, Date fecha_nacimiento) {
+        super(id_producto, nombre_producto, codigo_del_proveedor, descripcion_producto, precio_de_compra, precio_de_venta, cantidad_en_bodega, disponibilidad, foto_producto, id_proveedor, id_empresa, id_persona, cedula, nombres, apellidos, direccion, genero, telefono, fecha_nacimiento);
         this.nombre_categoria = nombre_categoria;
         this.descripcion_categoria = descripcion_categoria;
         this.id_categoria = id_categoria;
     }
-
     
-
     public String getNombre_categoria() {
         return nombre_categoria;
     }
