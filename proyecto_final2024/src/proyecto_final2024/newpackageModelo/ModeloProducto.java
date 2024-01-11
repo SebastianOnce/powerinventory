@@ -25,7 +25,7 @@ public class ModeloProducto extends Producto{
         String sql;
         sql="INSERT INTO producto (nombre_producto, codigo_del_proveedor, descripcion_producto, cantidad_en_bodega, "
                 + "disponibilidad, id_categoria, precio_de_compra, precio_de_venta)"
-                + " VALUES('"+getNombre_producto()+"', '"+getCodigo_del_proveedor()+"', '"+getDescripcion_producto()+"', "
+                + " VALUES('"+getNombre_producto()+"', '"+getCodigo_del_proveedor()+"', '"+getDescripcion_producto()+"', '"+getCantidad_en_bodega()+"',  "
                 + "'"+getPrecio_de_compra()+"', '"+getPrecio_de_venta()+"', '"+getDisponibilidad()+"', '"+getId_categoria()+"')";
         return con.accionDB(sql);
     }
@@ -50,7 +50,7 @@ public class ModeloProducto extends Producto{
         
         String sql;
         sql = "SELECT nombre_producto, codigo_del_proveedor, descripcion_producto, cantidad_en_bodega, disponibilidad, "
-                + "id_categoria, precio_de_compra, precio_de_venta FROM productos";
+                + "id_categoria, precio_de_compra, precio_de_venta FROM producto";
         ResultSet rs = cpg.consultaDB(sql);
         
         try {
@@ -65,7 +65,7 @@ public class ModeloProducto extends Producto{
                 Miproducto.setPrecio_de_compra(Float.valueOf(rs.getString("precio_de_compra")));
                 Miproducto.setPrecio_de_venta(Float.valueOf(rs.getString("precio_de_venta")));
                 
-                listaProductos().add(Miproducto);
+                listaProductos.add(Miproducto);
                 
             }
             rs.close();

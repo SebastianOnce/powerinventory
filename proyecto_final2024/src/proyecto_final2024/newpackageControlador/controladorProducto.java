@@ -29,7 +29,8 @@ public class controladorProducto {
         this.modelo = modelo;
         this.vista = vista;
         vista.setVisible(true);
-        cargarBoxes();
+//        cargarBoxes();
+        listaProductos();
     }
 
     public void iniciarControl() {
@@ -156,56 +157,6 @@ public class controladorProducto {
                 String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta())};
             mTabla.addRow(rowData);
         });
-    }
-    public void cargarBoxes(){
-        //CARGAR PROVEEDORES
-                try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/superinver", "postgres", "1234")) {
-            String sql = "SELECT id_proveedor, cedula, nombre_proveedor FROM proveedor";
-
-            try (PreparedStatement preparedStatement = con.prepareStatement(sql);
-                    ResultSet resultSet = preparedStatement.executeQuery()) {
-
-                while (resultSet.next()) {
-                    int idProveedor = resultSet.getInt("id_proveedor");
-                    String cedula = resultSet.getString("cedula");
-                    String nombreProveedor = resultSet.getString("nombre_proveedor");
-                    //COMPROVACION
-                    System.out.println("Proveedor: ID=" + idProveedor + ", Cedula=" + cedula + ", Nombre=" + nombreProveedor);
-                    vista.getCbcodigoproveedor().addItem(String.valueOf(idProveedor));
-                }
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("ERROR");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("ERROR");
-        }
-                //CARGAR CATEGORIAS
-                try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/superinver", "postgres", "1234")) {
-            String sql = "SELECT id_categoria, nombre_categoria FROM categoria_producto";
-
-            try (PreparedStatement preparedStatement = con.prepareStatement(sql);
-                    ResultSet resultSet = preparedStatement.executeQuery()) {
-
-                while (resultSet.next()) {
-                    int idcategoria = resultSet.getInt("id_categoria");
-                    String nombre = resultSet.getString("nombre_categoria");
-                    //COMPROVACION
-                    vista.getCbcategoria().addItem(String.valueOf(nombre));
-                }
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("ERROR");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("ERROR");
-        }
     }
 
 }
