@@ -20,7 +20,7 @@ import proyecto_final2024.newpackageVista.VistaProducto;
 /**
  *
  * @author elshi
- */
+ *///
 public class controladorProducto {
     private VistaProducto vista;
 

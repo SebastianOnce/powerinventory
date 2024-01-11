@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author elshi
- */
+ *///
 public class ModeloProducto extends Producto{
     Conexion con= new Conexion();
     
@@ -46,7 +46,7 @@ public class ModeloProducto extends Producto{
     
     public static List<Producto> listaProductos(){
         Conexion cpg = new Conexion();
-        List<Producto> listaProductos = new ArrayList<Producto>();
+        List<Producto> listaProductos = new ArrayList<>();
         
         String sql;
         sql = "SELECT nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, disponibilidad, "

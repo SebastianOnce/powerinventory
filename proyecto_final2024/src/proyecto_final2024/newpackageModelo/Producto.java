@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  *
  * @author elshi
- */
+ *///
 public class Producto extends Proveedor{
     
     private String id_producto;
