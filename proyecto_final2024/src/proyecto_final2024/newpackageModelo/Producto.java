@@ -14,33 +14,32 @@ public class Producto extends Proveedor{
     
     private String id_producto;
     private String nombre_producto;
-    private int codigo_del_proveedor;
     private String descripcion_producto;
     private int cantidad_en_bodega;
     private String disponibilidad;
-    private Byte foto_producto;
     private String id_categoria;
     private float precio_de_compra;
     private float precio_de_venta;
+    private Byte foto_producto;
+    
+    
 
     public Producto() {
         super();
     }
 
-    public Producto(String id_producto, String nombre_producto, int codigo_del_proveedor, String descripcion_producto, int cantidad_en_bodega, String disponibilidad, Byte foto_producto, String id_categoria, float precio_de_compra, float precio_de_venta, String id_proveedor, String id_empresa, String id_persona, String cedula, String nombres, String apellidos, String direccion, String genero, String telefono, Date fecha_nacimiento) {
+    public Producto(String id_producto, String nombre_producto, String descripcion_producto, int cantidad_en_bodega, String disponibilidad, String id_categoria, float precio_de_compra, float precio_de_venta, Byte foto_producto, String id_proveedor, String id_empresa, String id_persona, String cedula, String nombres, String apellidos, String direccion, String genero, String telefono, Date fecha_nacimiento) {
         super(id_proveedor, id_empresa, id_persona, cedula, nombres, apellidos, direccion, genero, telefono, fecha_nacimiento);
         this.id_producto = id_producto;
         this.nombre_producto = nombre_producto;
-        this.codigo_del_proveedor = codigo_del_proveedor;
         this.descripcion_producto = descripcion_producto;
         this.cantidad_en_bodega = cantidad_en_bodega;
         this.disponibilidad = disponibilidad;
-        this.foto_producto = foto_producto;
         this.id_categoria = id_categoria;
         this.precio_de_compra = precio_de_compra;
         this.precio_de_venta = precio_de_venta;
+        this.foto_producto = foto_producto;
     }
-
     
 
     public float getPrecio_de_compra() {
@@ -73,14 +72,6 @@ public class Producto extends Proveedor{
 
     public void setNombre_producto(String nombre_producto) {
         this.nombre_producto = nombre_producto;
-    }
-
-    public int getCodigo_del_proveedor() {
-        return codigo_del_proveedor;
-    }
-
-    public void setCodigo_del_proveedor(int codigo_del_proveedor) {
-        this.codigo_del_proveedor = codigo_del_proveedor;
     }
 
     public String getDescripcion_producto() {

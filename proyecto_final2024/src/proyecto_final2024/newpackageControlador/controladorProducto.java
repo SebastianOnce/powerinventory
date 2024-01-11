@@ -45,7 +45,7 @@ public class controladorProducto {
             disp = "no";
         }
         String nombre_producto = vista.getTxtnombre().getText();
-        String codigo_del_proveedor = vista.getCbcodigoproveedor().getSelectedItem().toString();
+        String id_proveedor = vista.getCbcodigoproveedor().getSelectedItem().toString();
         String descripcion_producto = vista.getTxtdescripcion().getText();
         String cantidad_en_bodega = vista.getTxtcantidadbodega().getText();
         String disponibilidad = disp;
@@ -56,7 +56,7 @@ public class controladorProducto {
         ModeloProducto producto = new ModeloProducto();
 
         producto.setNombre_producto(nombre_producto);
-        producto.setCodigo_del_proveedor(Integer.parseInt(codigo_del_proveedor));
+        producto.setId_proveedor(id_proveedor);
         producto.setDescripcion_producto(descripcion_producto);
         producto.setCantidad_en_bodega(Integer.valueOf(cantidad_en_bodega));
         producto.setDisponibilidad(disponibilidad);
@@ -94,7 +94,7 @@ public class controladorProducto {
             ModeloProducto producto = new ModeloProducto();
 
             producto.setNombre_producto(vista.getTxtnombre().getText());
-            producto.setCodigo_del_proveedor(Integer.parseInt(vista.getCbcodigoproveedor().getSelectedItem().toString()));
+            producto.setId_proveedor(vista.getCbcodigoproveedor().getSelectedItem().toString());
             producto.setDescripcion_producto(vista.getTxtdescripcion().getText());
             producto.setCantidad_en_bodega(Integer.valueOf(vista.getTxtcantidadbodega().getText()));
             producto.setId_categoria(vista.getCbcategoria().getSelectedItem().toString());
@@ -150,9 +150,8 @@ public class controladorProducto {
         mTabla = (DefaultTableModel) vista.getTblproductos().getModel();
         mTabla.setNumRows(0);//limpio la tabla
         listap.stream().forEach(pro -> {
-            String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), String.valueOf(pro.getCodigo_del_proveedor()), String.valueOf(pro.getDescripcion_producto()),
-                String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getId_categoria(),
-                String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta())};
+            String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), pro.getDescripcion_producto(), String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getId_proveedor(),
+                 pro.getId_categoria(),String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta())};
             mTabla.addRow(rowData);
         });
     }

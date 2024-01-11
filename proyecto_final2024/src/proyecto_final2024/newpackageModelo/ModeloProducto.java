@@ -49,19 +49,22 @@ public class ModeloProducto extends Producto{
         List<Producto> listaProductos = new ArrayList<>();
         
         String sql;
-        sql = "SELECT nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, disponibilidad, "
+        sql = "SELECT id_producto, nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, disponibilidad, "
                 + "id_categoria, precio_de_compra, precio_de_venta FROM producto";
         ResultSet rs = cpg.consultaDB(sql);
         
         try {
             while(rs.next()){
                 Producto Miproducto = new Producto();
+                Miproducto.setId_producto(rs.getString("id_producto"));
                 Miproducto.setNombre_producto(rs.getString("nombre_producto"));
-                Miproducto.setCodigo_del_proveedor(rs.getInt("id_proveedor"));
                 Miproducto.setDescripcion_producto(rs.getString("descripcion_producto"));
-                Miproducto.setCantidad_en_bodega(Integer.valueOf(rs.getString("cantidad_en_bodega")));
                 Miproducto.setDisponibilidad(rs.getString("disponibilidad"));
+                Miproducto.setCantidad_en_bodega(Integer.valueOf(rs.getString("cantidad_en_bodega")));
+                
                 Miproducto.setId_categoria(rs.getString("id_categoria"));
+                Miproducto.setId_proveedor(rs.getString("id_proveedor"));
+                
                 Miproducto.setPrecio_de_compra(Float.valueOf(rs.getString("precio_de_compra")));
                 Miproducto.setPrecio_de_venta(Float.valueOf(rs.getString("precio_de_venta")));
                 
