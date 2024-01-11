@@ -4,6 +4,8 @@
  */
 package proyecto_final2024.newpackageControlador;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,23 +26,42 @@ import proyecto_final2024.newpackageVista.VistaProducto;
 public class controladorProducto {
 
     private VistaProducto vista;
+    static public String id_categ;
 
     public controladorProducto(VistaProducto vista) {
         this.vista = vista;
         vista.setVisible(true);
-//        cargarBoxes();
+        ModeloProducto.cargarBoxes(vista);
         listaProductos();
     }
 
     public void iniciarControl() {
+        vista.getTxtcodigoproducto().setEditable(false);
         vista.getBtnCREAR().addActionListener(l -> CrearProducto());
         vista.getBtnMODIFICAR().addActionListener(l -> ModificarProducto());
         vista.getBtnELIMINAR().addActionListener(l -> EliminarProducto());
         vista.getTblproductos().addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            llenarCampos();
-        }
-    });
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                llenarCampos();
+            }
+        });
+        vista.getTxtBUSCAR().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String textoBusqueda = vista.getTxtBUSCAR().getText();
+
+                // Realizar la búsqueda directamente en la base de datos y obtener los productos filtrados
+                try {
+                    List<Producto> productosFiltrados = ModeloProducto.BuscarProducto(textoBusqueda);
+
+                    // Actualizar la tabla con los productos filtrados
+                    actualizarTabla(productosFiltrados);
+                } catch (Exception ex) {
+                    listaProductos();
+                }
+
+            }
+        });
     }
 
     public void CrearProducto() {
@@ -51,11 +72,11 @@ public class controladorProducto {
             disp = "no";
         }
         String nombre_producto = vista.getTxtnombre().getText();
-        String id_proveedor = vista.getCbcodigoproveedor().getSelectedItem().toString();
+        String id_proveedor = vista.getCbcodigoproveedor().getSelectedItem().toString().split("-", 2)[0];
         String descripcion_producto = vista.getTxtdescripcion().getText();
         String cantidad_en_bodega = vista.getTxtcantidadbodega().getText();
         String disponibilidad = disp;
-        String id_categoria = vista.getCbcategoria().getSelectedItem().toString();
+        String id_categoria = vista.getCbcategoria().getSelectedItem().toString().split("-", 2)[0];;
         String precio_de_compra = vista.getTxtpreciocompra().getText();
         String precio_de_venta = vista.getTxtprecioVenta().getText();
 
@@ -87,18 +108,18 @@ public class controladorProducto {
         } else {
             disp = "no";
         }
-        String id_producto=vista.getTxtcodigoproducto().getText();
+        String id_producto = vista.getTxtcodigoproducto().getText();
         String nombre_producto = vista.getTxtnombre().getText();
-        String id_proveedor = vista.getCbcodigoproveedor().getSelectedItem().toString();
+        String id_proveedor = vista.getCbcodigoproveedor().getSelectedItem().toString().split("-", 2)[0];
         String descripcion_producto = vista.getTxtdescripcion().getText();
         String cantidad_en_bodega = vista.getTxtcantidadbodega().getText();
         String disponibilidad = disp;
-        String id_categoria = vista.getCbcategoria().getSelectedItem().toString();
+        String id_categoria = vista.getCbcategoria().getSelectedItem().toString().split("-", 2)[0];;
         String precio_de_compra = vista.getTxtpreciocompra().getText();
         String precio_de_venta = vista.getTxtprecioVenta().getText();
 
         ModeloProducto producto = new ModeloProducto();
-        
+
         producto.setId_producto(id_producto);
         producto.setNombre_producto(nombre_producto);
         producto.setId_proveedor(id_proveedor);
@@ -125,12 +146,18 @@ public class controladorProducto {
             String id = vista.getTblproductos().getValueAt(i, 0).toString();
             ModeloProducto producto = new ModeloProducto();
             producto.setId_producto(id);
-            if (producto.eliminarProducto() == null) {
-//                vista.getDlgPersona().setVisible(false);
-                JOptionPane.showMessageDialog(vista, "Producto eliminado exitosamente");
-                listaProductos();
-            } else {
-                JOptionPane.showMessageDialog(vista, "Error al eliminar producto");
+            int opcion = JOptionPane.showConfirmDialog(vista,
+                    "¿Estás seguro que deseas eliminar este producto?",
+                    "Confirmar eliminación",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (opcion == JOptionPane.YES_OPTION) {
+                if (producto.eliminarProducto() == null) {
+                    JOptionPane.showMessageDialog(vista, "Producto eliminado exitosamente");
+                    listaProductos();
+                } else {
+                    JOptionPane.showMessageDialog(vista, "Error al eliminar producto");
+                }
             }
         } else {
             JOptionPane.showMessageDialog(vista, "Primero elige una fila");
@@ -182,4 +209,17 @@ public class controladorProducto {
         }
 
     }
+
+    private void actualizarTabla(List<Producto> productos) {
+        DefaultTableModel mTabla = (DefaultTableModel) vista.getTblproductos().getModel();
+        mTabla.setNumRows(0); // Limpiar la tabla
+
+        productos.forEach(pro -> {
+            String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), pro.getDescripcion_producto(),
+                String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getId_proveedor(),
+                pro.getId_categoria(), String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta())};
+            mTabla.addRow(rowData);
+        });
+    }
+
 }
