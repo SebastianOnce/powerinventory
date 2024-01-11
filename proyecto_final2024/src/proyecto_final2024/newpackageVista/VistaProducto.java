@@ -93,16 +93,7 @@ public class VistaProducto extends javax.swing.JFrame {
 
     public JComboBox<String> getCbcodigoproveedor() {
         return cbcodigoproveedor;
-    }//QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----
-    public static void main(String[] args) { // QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----
-        VistaProducto vista=new VistaProducto();//QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----
-        //QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----
-        VistaProducto vista1=new VistaProducto();
-        ModeloProducto modelo1=new ModeloProducto();
-       controladorProducto controlp=new controladorProducto(modelo1, vista1);
-       controlp.iniciarControl();
-    }//QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----
-
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -196,10 +187,10 @@ public class VistaProducto extends javax.swing.JFrame {
 
         chbdisponibilidad.setText("jCheckBox1");
 
-        cbcodigoproveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        cbcodigoproveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         cbcodigoproveedor.setToolTipText("");
 
-        cbcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        cbcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
 
         jLabel11.setText("Codigo de Producto:");
 

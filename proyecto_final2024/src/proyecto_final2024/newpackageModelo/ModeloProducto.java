@@ -21,18 +21,18 @@ public class ModeloProducto extends Producto{
     public ModeloProducto(){
     }
     
-    public SQLException CrearProducto(){
+     public SQLException CrearProducto(){
         String sql;
-        sql="INSERT INTO producto (nombre_producto, codigo_del_proveedor, descripcion_producto, cantidad_en_bodega, "
+        sql="INSERT INTO producto (nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, "
                 + "disponibilidad, id_categoria, precio_de_compra, precio_de_venta)"
-                + " VALUES('"+getNombre_producto()+"', '"+getCodigo_del_proveedor()+"', '"+getDescripcion_producto()+"', '"+getCantidad_en_bodega()+"',  "
+                + " VALUES('"+getNombre_producto()+"', '"+getCodigo_del_proveedor()+"', '"+getCantidad_en_bodega()+"', '"+getDescripcion_producto()+"', "
                 + "'"+getPrecio_de_compra()+"', '"+getPrecio_de_venta()+"', '"+getDisponibilidad()+"', '"+getId_categoria()+"')";
         return con.accionDB(sql);
     }
     
     public SQLException modificarProducto(){
         String sql;
-        sql="UPDATE producto SET nombre_producto, codigo_del_proveedor, descripcion_producto, cantidad_en_bodega, "
+        sql="UPDATE producto SET nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, "
                 + "disponibilidad, id_categoria, precio_de_compra, precio_de_venta"
                 + " WHERE id_producto='"+getId_producto()+"'";
         return con.accionDB(sql);
@@ -49,7 +49,7 @@ public class ModeloProducto extends Producto{
         List<Producto> listaProductos = new ArrayList<Producto>();
         
         String sql;
-        sql = "SELECT nombre_producto, codigo_del_proveedor, descripcion_producto, cantidad_en_bodega, disponibilidad, "
+        sql = "SELECT nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, disponibilidad, "
                 + "id_categoria, precio_de_compra, precio_de_venta FROM producto";
         ResultSet rs = cpg.consultaDB(sql);
         
@@ -57,7 +57,7 @@ public class ModeloProducto extends Producto{
             while(rs.next()){
                 Producto Miproducto = new Producto();
                 Miproducto.setNombre_producto(rs.getString("nombre_producto"));
-                Miproducto.setCodigo_del_proveedor(rs.getString("codigo_del_proveedor"));
+                Miproducto.setCodigo_del_proveedor(rs.getInt("id_proveedor"));
                 Miproducto.setDescripcion_producto(rs.getString("descripcion_producto"));
                 Miproducto.setCantidad_en_bodega(Integer.valueOf(rs.getString("cantidad_en_bodega")));
                 Miproducto.setDisponibilidad(rs.getString("disponibilidad"));
