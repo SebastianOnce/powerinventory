@@ -10,8 +10,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import proyecto_final2024.newpackageControlador.controladorProducto;
-import proyecto_final2024.newpackageModelo.ModeloProducto;
 
 /**
  *
