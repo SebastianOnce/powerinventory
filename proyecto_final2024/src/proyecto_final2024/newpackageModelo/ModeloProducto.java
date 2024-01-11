@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author elshi
- */
+ *///
 public class ModeloProducto extends Producto{
     Conexion con= new Conexion();
     
