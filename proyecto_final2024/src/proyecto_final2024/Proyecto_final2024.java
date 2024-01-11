@@ -4,9 +4,11 @@
  */
 package proyecto_final2024;
 
+import proyecto_final2024.newpackageControlador.ControladorEmpresas;
 import proyecto_final2024.newpackageControlador.ControladorPaginaPrincipal;
 import proyecto_final2024.newpackageControlador.controladorProducto;
 import proyecto_final2024.newpackageModelo.ModeloProducto;
+import proyecto_final2024.newpackageVista.VistaEmpresa;
 import proyecto_final2024.newpackageVista.VistaPrincipal;
 import proyecto_final2024.newpackageVista.VistaProducto;
 
@@ -20,7 +22,11 @@ public class Proyecto_final2024 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-  
+//  
+//         VistaEmpresa vista = new VistaEmpresa();
+//       ControladorEmpresas control = new ControladorEmpresas(vista);
+//       control.inicarControlador();
+       
         VistaProducto vista = new VistaProducto();
        controladorProducto control = new controladorProducto(vista);
        control.iniciarControl();
