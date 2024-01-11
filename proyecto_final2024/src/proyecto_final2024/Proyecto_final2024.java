@@ -25,13 +25,13 @@ public class Proyecto_final2024 {
      */
     public static void main(String[] args) {
 //  
-//         VistaEmpresa vista = new VistaEmpresa();
-//       ControladorEmpresas control = new ControladorEmpresas(vista);
-//       control.inicarControlador();
+         VistaEmpresa vista = new VistaEmpresa();
+       ControladorEmpresas control = new ControladorEmpresas(vista);
+       control.inicarControlador();
        
-        VistaProducto vista = new VistaProducto();
-       controladorProducto control = new controladorProducto(vista);
-       control.iniciarControl();
+//        VistaProducto vista = new VistaProducto();
+//       controladorProducto control = new controladorProducto(vista);
+//       control.iniciarControl();
 //  
 //        VistaPrincipal vista = new VistaPrincipal();
 //       ControladorPaginaPrincipal control = new ControladorPaginaPrincipal(vista);
