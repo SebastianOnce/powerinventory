@@ -71,7 +71,7 @@ public class ControladorEmpresas {
     }
     
     private void abrirDialogo(boolean nuevo) {
-//        limpiarCampos();
+        lipiar();
         if (nuevo) {
             vista.getjDialog1().setTitle("Crear nueva empresa");
         } else if (!nuevo) {
@@ -141,8 +141,11 @@ public class ControladorEmpresas {
     }
     
     public void enviarDatos() {
-        
             vista.getTxtNombreEm().setText(nombre_empresa);
             vista.getTxtDs().setText(desc_empresa);
+        }
+    public void lipiar() {
+            vista.getTxtNombreEm().setText("");
+            vista.getTxtDs().setText("");
         }
 }

@@ -206,6 +206,17 @@ public class controladorProveedor {
             java.util.logging.Logger.getLogger(controladorAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void limpiar() {
+            vista.getTxtcedula().setText("");
+            vista.getTxtnombres().setText("");
+            vista.getTxtapellidos().setText("");
+            vista.getTxtdireccion().setText("");
+            vista.getTxtgenero().setText("");
+            vista.getTxttelefono().setText("");
+            vista.getdtfecha().setDate(null);
+            vista.getCmbIdEmpresa().setSelectedItem("");
+        
+    }
 
     public void eliminarPro() {
         ModeloProveedor pro= new ModeloProveedor();
