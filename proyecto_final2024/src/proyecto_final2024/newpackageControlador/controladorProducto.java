@@ -45,7 +45,6 @@ public class controladorProducto {
         String descripcion_producto = vista.getTxtdescripcion().getText();
         String cantidad_en_bodega = vista.getTxtcantidadbodega().getText();
         String disponibilidad = disp;
-        String ruc_proveedor = vista.getCbRucproveedor().toString();
         String id_categoria = vista.getCbcategoria().getSelectedItem().toString();
         String precio_de_compra = vista.getTxtpreciocompra().getText();
         String precio_de_venta = vista.getTxtprecioVenta().getText();
