@@ -10,6 +10,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import proyecto_final2024.newpackageControlador.controladorProducto;
+import proyecto_final2024.newpackageModelo.ModeloProducto;
 
 /**
  *
@@ -94,7 +96,11 @@ public class VistaProducto extends javax.swing.JFrame {
     }//QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----
     public static void main(String[] args) { // QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----
         VistaProducto vista=new VistaProducto();//QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----
-        vista.setVisible(true);//QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----
+        //QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----
+        VistaProducto vista1=new VistaProducto();
+        ModeloProducto modelo1=new ModeloProducto();
+       controladorProducto controlp=new controladorProducto(modelo1, vista1);
+       controlp.iniciarControl();
     }//QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----QUITAAAAAR----
 
     /**

@@ -25,10 +25,7 @@ public class Proyecto_final2024 {
        ControladorPaginaPrincipal control = new ControladorPaginaPrincipal(vista);
        control.inicarControladorPrincipal();
        
-        VistaProducto vista1=new VistaProducto();
-        ModeloProducto modelo1=new ModeloProducto();
-       controladorProducto controlp=new controladorProducto(modelo1, vista1);
-       controlp.iniciarControl();
+        
     }
     
 }
