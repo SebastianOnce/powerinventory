@@ -144,13 +144,14 @@ public class VistaProducto extends javax.swing.JFrame {
 
         tblproductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Producto", "Nombre", "Descripcion", "Cant en bodega", "Disponibilidad", "ID Proveedor", "Categoria", "Precio de compra", "Precio de venta"
             }
         ));
         jScrollPane1.setViewportView(tblproductos);

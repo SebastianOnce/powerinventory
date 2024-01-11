@@ -21,11 +21,11 @@ public class ModeloProducto extends Producto{
     public ModeloProducto(){
     }
     
-     public SQLException CrearProducto(){
+    public SQLException CrearProducto(){
         String sql;
         sql="INSERT INTO producto (nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, "
                 + "disponibilidad, id_categoria, precio_de_compra, precio_de_venta)"
-                + " VALUES('"+getNombre_producto()+"', '"+getCodigo_del_proveedor()+"', '"+getCantidad_en_bodega()+"', '"+getDescripcion_producto()+"', "
+                + " VALUES('"+getNombre_producto()+"', '"+getId_proveedor()+"', '"+getDescripcion_producto()+"', '"+getCantidad_en_bodega()+"',  "
                 + "'"+getPrecio_de_compra()+"', '"+getPrecio_de_venta()+"', '"+getDisponibilidad()+"', '"+getId_categoria()+"')";
         return con.accionDB(sql);
     }
