@@ -32,8 +32,8 @@ public class ModeloProducto extends Producto{
     
     public SQLException modificarProducto(){
         String sql;
-        sql="UPDATE producto SET nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, "
-                + "disponibilidad, id_categoria, precio_de_compra, precio_de_venta"
+        sql="UPDATE producto SET nombre_producto='"+getNombre_producto()+"', id_proveedor='"+getId_proveedor()+"', descripcion_producto='"+getDescripcion_producto()+"', cantidad_en_bodega='"+getCantidad_en_bodega()+"', "
+                + "disponibilidad='"+getDisponibilidad()+"', id_categoria='"+getId_categoria()+"', precio_de_compra='"+getPrecio_de_compra()+"', precio_de_venta='"+getPrecio_de_venta()+"'"
                 + " WHERE id_producto='"+getId_producto()+"'";
         return con.accionDB(sql);
     }
