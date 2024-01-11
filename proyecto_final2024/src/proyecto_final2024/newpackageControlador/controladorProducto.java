@@ -24,7 +24,7 @@ public class controladorProducto {
         this.modelo = modelo;
         this.vista = vista;
         vista.setVisible(true);
-        
+
     }
 
     public void iniciarControl() {
@@ -57,7 +57,6 @@ public class controladorProducto {
         producto.setDescripcion_producto(descripcion_producto);
         producto.setCantidad_en_bodega(Integer.valueOf(cantidad_en_bodega));
         producto.setDisponibilidad(disponibilidad);
-        producto.setRuc_proveedor(ruc_proveedor);
         producto.setId_categoria(id_categoria);
         producto.setPrecio_de_compra(Float.valueOf(precio_de_compra));
         producto.setPrecio_de_venta(Float.valueOf(precio_de_venta));
@@ -85,7 +84,6 @@ public class controladorProducto {
             vista.getTxtdescripcion().setText(vista.getTblproductos().getValueAt(i, 3).toString());
             vista.getTxtcantidadbodega().setText(vista.getTblproductos().getValueAt(i, 4).toString());
             vista.getChbdisponibilidad().setSelected(disp);
-            vista.getCbRucproveedor().setSelectedItem(vista.getTblproductos().getValueAt(i, 6).toString());
             vista.getCbcategoria().setSelectedItem(vista.getTblproductos().getValueAt(i, 7).toString());
             vista.getTxtpreciocompra().setText(vista.getTblproductos().getValueAt(i, 8).toString());
             vista.getTxtprecioVenta().setText(vista.getTblproductos().getValueAt(i, 9).toString());
@@ -96,7 +94,6 @@ public class controladorProducto {
             producto.setCodigo_del_proveedor(vista.getCbcodigoproveedor().getSelectedItem().toString());
             producto.setDescripcion_producto(vista.getTxtdescripcion().getText());
             producto.setCantidad_en_bodega(Integer.valueOf(vista.getTxtcantidadbodega().getText()));
-            producto.setRuc_proveedor(vista.getCbRucproveedor().getSelectedItem().toString());
             producto.setId_categoria(vista.getCbcategoria().getSelectedItem().toString());
             producto.setPrecio_de_compra(Float.valueOf(vista.getTxtpreciocompra().getText()));
             producto.setPrecio_de_venta(Float.valueOf(vista.getTxtprecioVenta().getText()));
@@ -139,7 +136,6 @@ public class controladorProducto {
         vista.getTxtdescripcion().setText("");
         vista.getTxtcantidadbodega().setText("");
         vista.getChbdisponibilidad().setSelected(false);
-        vista.getCbRucproveedor().setSelectedIndex(0);
         vista.getCbcategoria().setSelectedIndex(0);
         vista.getTxtpreciocompra().setText("");
         vista.getTxtprecioVenta().setText("");
@@ -152,7 +148,7 @@ public class controladorProducto {
         mTabla.setNumRows(0);//limpio la tabla
         listap.stream().forEach(pro -> {
             String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), pro.getCodigo_del_proveedor(), String.valueOf(pro.getDescripcion_producto()),
-                String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getRuc_proveedor(), pro.getRuc_proveedor(), pro.getId_categoria(),
+                String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getId_categoria(),
                 String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta())};
             mTabla.addRow(rowData);
         });

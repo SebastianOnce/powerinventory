@@ -24,17 +24,16 @@ public class ModeloProducto extends Producto{
     public SQLException CrearProducto(){
         String sql;
         sql="INSERT INTO producto (nombre_producto, codigo_del_proveedor, descripcion_producto, cantidad_en_bodega, "
-                + "disponibilidad, ruc_proveedor, id_categoria, precio_de_compra, precio_de_venta)"
+                + "disponibilidad, id_categoria, precio_de_compra, precio_de_venta)"
                 + " VALUES('"+getNombre_producto()+"', '"+getCodigo_del_proveedor()+"', '"+getDescripcion_producto()+"', "
-                + "'"+getPrecio_de_compra()+"', '"+getPrecio_de_venta()+"', '"+getDisponibilidad()+"', "
-                + "'"+getRuc_proveedor()+"', '"+getId_categoria()+"')";
+                + "'"+getPrecio_de_compra()+"', '"+getPrecio_de_venta()+"', '"+getDisponibilidad()+"', '"+getId_categoria()+"')";
         return con.accionDB(sql);
     }
     
     public SQLException modificarProducto(){
         String sql;
         sql="UPDATE producto SET nombre_producto, codigo_del_proveedor, descripcion_producto, cantidad_en_bodega, "
-                + "disponibilidad, ruc_proveedor, id_categoria, precio_de_compra, precio_de_venta"
+                + "disponibilidad, id_categoria, precio_de_compra, precio_de_venta"
                 + " WHERE id_producto='"+getId_producto()+"'";
         return con.accionDB(sql);
     }
@@ -44,16 +43,20 @@ public class ModeloProducto extends Producto{
         sql="DELETE FROM producto WHERE id_producto='"+getId_producto()+"'";
         return con.accionDB(sql);
     }
+
     public SQLException buscarProductos(){
         
+        return null;
+        
     }
+
     public static List<Producto> listaProductos(){
         Conexion cpg = new Conexion();
         List<Producto> listaProductos = new ArrayList<Producto>();
         
         String sql;
         sql = "SELECT nombre_producto, codigo_del_proveedor, descripcion_producto, cantidad_en_bodega, disponibilidad, "
-                + "ruc_proveedor, id_categoria, precio_de_compra, precio_de_venta FROM productos";
+                + "id_categoria, precio_de_compra, precio_de_venta FROM productos";
         ResultSet rs = cpg.consultaDB(sql);
         
         try {
@@ -64,7 +67,6 @@ public class ModeloProducto extends Producto{
                 Miproducto.setDescripcion_producto(rs.getString("descripcion_producto"));
                 Miproducto.setCantidad_en_bodega(Integer.valueOf(rs.getString("cantidad_en_bodega")));
                 Miproducto.setDisponibilidad(rs.getString("disponibilidad"));
-                Miproducto.setRuc_proveedor(rs.getString("ruc_proveedor"));
                 Miproducto.setId_categoria(rs.getString("id_categoria"));
                 Miproducto.setPrecio_de_compra(Float.valueOf(rs.getString("precio_de_compra")));
                 Miproducto.setPrecio_de_venta(Float.valueOf(rs.getString("precio_de_venta")));
