@@ -46,7 +46,7 @@ public class ModeloProducto extends Producto{
     
     public static List<Producto> listaProductos(){
         Conexion cpg = new Conexion();
-        List<Producto> listaProductos = new ArrayList<Producto>();
+        List<Producto> listaProductos = new ArrayList<>();
         
         String sql;
         sql = "SELECT nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, disponibilidad, "
@@ -57,7 +57,7 @@ public class ModeloProducto extends Producto{
             while(rs.next()){
                 Producto Miproducto = new Producto();
                 Miproducto.setNombre_producto(rs.getString("nombre_producto"));
-                Miproducto.setId_proveedor(rs.getString("id_proveedor"));
+                Miproducto.setCodigo_del_proveedor(rs.getInt("id_proveedor"));
                 Miproducto.setDescripcion_producto(rs.getString("descripcion_producto"));
                 Miproducto.setCantidad_en_bodega(Integer.valueOf(rs.getString("cantidad_en_bodega")));
                 Miproducto.setDisponibilidad(rs.getString("disponibilidad"));

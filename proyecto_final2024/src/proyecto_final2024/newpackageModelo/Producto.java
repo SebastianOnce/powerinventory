@@ -14,7 +14,7 @@ public class Producto extends Proveedor{
     
     private String id_producto;
     private String nombre_producto;
-    private String codigo_del_proveedor;
+    private int codigo_del_proveedor;
     private String descripcion_producto;
     private int cantidad_en_bodega;
     private String disponibilidad;
@@ -27,7 +27,7 @@ public class Producto extends Proveedor{
         super();
     }
 
-    public Producto(String id_producto, String nombre_producto, String codigo_del_proveedor, String descripcion_producto, int cantidad_en_bodega, String disponibilidad, Byte foto_producto, String id_categoria, float precio_de_compra, float precio_de_venta, String id_proveedor, String id_empresa, String id_persona, String cedula, String nombres, String apellidos, String direccion, String genero, String telefono, Date fecha_nacimiento) {
+    public Producto(String id_producto, String nombre_producto, int codigo_del_proveedor, String descripcion_producto, int cantidad_en_bodega, String disponibilidad, Byte foto_producto, String id_categoria, float precio_de_compra, float precio_de_venta, String id_proveedor, String id_empresa, String id_persona, String cedula, String nombres, String apellidos, String direccion, String genero, String telefono, Date fecha_nacimiento) {
         super(id_proveedor, id_empresa, id_persona, cedula, nombres, apellidos, direccion, genero, telefono, fecha_nacimiento);
         this.id_producto = id_producto;
         this.nombre_producto = nombre_producto;
@@ -75,11 +75,11 @@ public class Producto extends Proveedor{
         this.nombre_producto = nombre_producto;
     }
 
-    public String getCodigo_del_proveedor() {
+    public int getCodigo_del_proveedor() {
         return codigo_del_proveedor;
     }
 
-    public void setCodigo_del_proveedor(String codigo_del_proveedor) {
+    public void setCodigo_del_proveedor(int codigo_del_proveedor) {
         this.codigo_del_proveedor = codigo_del_proveedor;
     }
 

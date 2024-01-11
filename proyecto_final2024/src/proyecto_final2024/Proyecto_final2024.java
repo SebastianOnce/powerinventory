@@ -21,9 +21,13 @@ public class Proyecto_final2024 {
      */
     public static void main(String[] args) {
   
-        VistaPrincipal vista = new VistaPrincipal();
-       ControladorPaginaPrincipal control = new ControladorPaginaPrincipal(vista);
-       control.inicarControladorPrincipal();
+        VistaProducto vista = new VistaProducto();
+       controladorProducto control = new controladorProducto(vista);
+       control.iniciarControl();
+//  
+//        VistaPrincipal vista = new VistaPrincipal();
+//       ControladorPaginaPrincipal control = new ControladorPaginaPrincipal(vista);
+//       control.inicarControladorPrincipal();
        
         
     }

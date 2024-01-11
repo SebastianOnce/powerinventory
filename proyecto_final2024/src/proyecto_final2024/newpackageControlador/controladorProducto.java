@@ -22,11 +22,9 @@ import proyecto_final2024.newpackageVista.VistaProducto;
  * @author elshi
  *///
 public class controladorProducto {
-    private ModeloProducto modelo;
     private VistaProducto vista;
 
-    public controladorProducto(ModeloProducto modelo, VistaProducto vista) {
-        this.modelo = modelo;
+    public controladorProducto( VistaProducto vista) {
         this.vista = vista;
         vista.setVisible(true);
 //        cargarBoxes();
@@ -58,7 +56,7 @@ public class controladorProducto {
         ModeloProducto producto = new ModeloProducto();
 
         producto.setNombre_producto(nombre_producto);
-        producto.setCodigo_del_proveedor(codigo_del_proveedor);
+        producto.setCodigo_del_proveedor(Integer.parseInt(codigo_del_proveedor));
         producto.setDescripcion_producto(descripcion_producto);
         producto.setCantidad_en_bodega(Integer.valueOf(cantidad_en_bodega));
         producto.setDisponibilidad(disponibilidad);
@@ -96,7 +94,7 @@ public class controladorProducto {
             ModeloProducto producto = new ModeloProducto();
 
             producto.setNombre_producto(vista.getTxtnombre().getText());
-            producto.setCodigo_del_proveedor(vista.getCbcodigoproveedor().getSelectedItem().toString());
+            producto.setCodigo_del_proveedor(Integer.parseInt(vista.getCbcodigoproveedor().getSelectedItem().toString()));
             producto.setDescripcion_producto(vista.getTxtdescripcion().getText());
             producto.setCantidad_en_bodega(Integer.valueOf(vista.getTxtcantidadbodega().getText()));
             producto.setId_categoria(vista.getCbcategoria().getSelectedItem().toString());
@@ -152,7 +150,7 @@ public class controladorProducto {
         mTabla = (DefaultTableModel) vista.getTblproductos().getModel();
         mTabla.setNumRows(0);//limpio la tabla
         listap.stream().forEach(pro -> {
-            String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), pro.getCodigo_del_proveedor(), String.valueOf(pro.getDescripcion_producto()),
+            String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), String.valueOf(pro.getCodigo_del_proveedor()), String.valueOf(pro.getDescripcion_producto()),
                 String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getId_categoria(),
                 String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta())};
             mTabla.addRow(rowData);
