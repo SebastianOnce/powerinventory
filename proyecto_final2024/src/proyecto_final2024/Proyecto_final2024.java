@@ -5,7 +5,10 @@
 package proyecto_final2024;
 
 import proyecto_final2024.newpackageControlador.ControladorPaginaPrincipal;
+import proyecto_final2024.newpackageControlador.controladorProducto;
+import proyecto_final2024.newpackageModelo.ModeloProducto;
 import proyecto_final2024.newpackageVista.VistaPrincipal;
+import proyecto_final2024.newpackageVista.VistaProducto;
 
 /**
  *
@@ -21,6 +24,10 @@ public class Proyecto_final2024 {
         VistaPrincipal vista = new VistaPrincipal();
        ControladorPaginaPrincipal control = new ControladorPaginaPrincipal(vista);
        control.inicarControladorPrincipal();
+       
+        VistaProducto vista1=new VistaProducto();
+        ModeloProducto modelo1=new ModeloProducto();
+       controladorProducto controlp=new controladorProducto(modelo1, vista1);
     }
     
 }

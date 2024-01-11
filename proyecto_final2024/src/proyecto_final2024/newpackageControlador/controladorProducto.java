@@ -4,9 +4,15 @@
  */
 package proyecto_final2024.newpackageControlador;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import proyecto_final2024.newpackageModelo.Conexion;
 import proyecto_final2024.newpackageModelo.ModeloProducto;
 import proyecto_final2024.newpackageModelo.Producto;
 import proyecto_final2024.newpackageVista.VistaProducto;
@@ -16,7 +22,6 @@ import proyecto_final2024.newpackageVista.VistaProducto;
  * @author elshi
  */
 public class controladorProducto {
-
     private ModeloProducto modelo;
     private VistaProducto vista;
 
@@ -24,7 +29,29 @@ public class controladorProducto {
         this.modelo = modelo;
         this.vista = vista;
         vista.setVisible(true);
+        try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/superinver", "postgres", "1234")) {
+            String sql = "SELECT id_proveedor, cedula, nombre_proveedor FROM proveedor";
 
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql);
+                 ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+                    int idProveedor = resultSet.getInt("id_proveedor");
+                    String cedula = resultSet.getString("cedula");
+                    String nombreProveedor = resultSet.getString("nombre_proveedor");
+
+                    System.out.println("Proveedor: ID=" + idProveedor + ", Cedula=" + cedula + ", Nombre=" + nombreProveedor);
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("ERROR");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("ERROR");
+        }
     }
 
     public void iniciarControl() {

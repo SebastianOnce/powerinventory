@@ -43,13 +43,7 @@ public class ModeloProducto extends Producto{
         sql="DELETE FROM producto WHERE id_producto='"+getId_producto()+"'";
         return con.accionDB(sql);
     }
-
-    public SQLException buscarProductos(){
-        
-        return null;
-        
-    }
-
+    
     public static List<Producto> listaProductos(){
         Conexion cpg = new Conexion();
         List<Producto> listaProductos = new ArrayList<Producto>();
