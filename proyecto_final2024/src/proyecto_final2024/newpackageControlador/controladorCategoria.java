@@ -24,26 +24,29 @@ public class controladorCategoria {
     VistaCategoria vista;
 
     static public String id_cat, nombre_cat, descripcion_cat;
+    static public String idBuscara;
 
     public controladorCategoria(VistaCategoria vista) {
         this.vista = vista;
         this.vista.setVisible(true);
+        this.vista.setBorder(null);
+        this.vista.setLocation(0, -23);
         
     }
+    
     public void iniciarcontroladorCategoria(){
         listarCategoria();
-        vista.getTxtbuscar().addKeyListener(new KeyAdapter() {
+        
+         vista.getTxtbuscar().addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                id_cat = "" + vista.getTxtbuscar().getText();
-                System.out.println(id_cat);
-                List<Categoria> miListaCat = ModeloCategoriaP.buscarCategoria();
+                idBuscara = "" + vista.getTxtbuscar().getText();
+                System.out.println(idBuscara);
+                List<Categoria> miListaPro = ModeloCategoriaP.buscarCategoria();
                 DefaultTableModel mTabla = (DefaultTableModel) vista.getTblcategorias().getModel();
                 mTabla.setRowCount(0);
-                miListaCat.forEach(cat -> {
-                    String[] rowData = {
-                        String.valueOf(cat.getId_categoria()), cat.getNombre_categoria(), cat.getDescripcion_categoria()
-                    };
+                miListaPro.forEach(admin -> {
+                    String[] rowData = {String.valueOf(admin.getId_categoria()), admin.getNombre_categoria(), admin.getDescripcion_categoria()};
                     mTabla.addRow(rowData);
                 });
             }
@@ -59,11 +62,12 @@ public class controladorCategoria {
 
             }
         });
+        
         vista.getBtnCrear().addActionListener(l -> abrirDialogo(true));
         vista.getBtnModificar().addActionListener(l -> abrirDialogo(false));
         vista.getBtnaceptar().addActionListener(l -> crearModificarCategoria());
         vista.getBtnEliminar().addActionListener(l -> eliminarCategoria());
-
+        vista.getBtnSalir().addActionListener(l -> salir());
     }
 
     private void abrirDialogo(boolean nuevo) {
@@ -86,20 +90,7 @@ public class controladorCategoria {
         vista.getTxtdescripcion().setText(descripcion_cat);
     }
 
-    public void inicarControlador() {
-        listaCategoria();
-    }
 
-    public void listaCategoria() {
-        List<Categoria> listacat = ModeloCategoriaP.listaCategorias();
-        DefaultTableModel mTabla;
-        mTabla = (DefaultTableModel) vista.getTblcategorias().getModel();
-        mTabla.setNumRows(0);
-        listacat.stream().forEach(cat -> {
-            String[] rowData = {String.valueOf(cat.getId_categoria()), cat.getNombre_categoria(), cat.getDescripcion_categoria()};
-            mTabla.addRow(rowData);
-        });
-    }
 
     public void crearModificarCategoria() {
 
@@ -196,4 +187,7 @@ public class controladorCategoria {
         }
     }
 
+    public void salir(){
+        vista.dispose();
+    }
 }

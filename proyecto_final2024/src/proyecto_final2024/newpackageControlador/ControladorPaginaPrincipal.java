@@ -5,7 +5,11 @@
  */
 package proyecto_final2024.newpackageControlador;
 
+import proyecto_final2024.newpackageVista.VistaAdministrador;
+import proyecto_final2024.newpackageVista.VistaCategoria;
+import proyecto_final2024.newpackageVista.VistaEmpresa;
 import proyecto_final2024.newpackageVista.VistaPrincipal;
+import proyecto_final2024.newpackageVista.VistaProducto;
 import proyecto_final2024.newpackageVista.VistaProveedor;
 
 /**
@@ -25,12 +29,50 @@ public class ControladorPaginaPrincipal {
     
     public void inicarControladorPrincipal(){
         vista.getBtnProveedores().addActionListener(l->abrirProveedor());
+        vista.getBtnAdmin().addActionListener(l->abrirAdmin());
+        vista.getBtnEmpresa().addActionListener(l->abrirEmpresas());
+        vista.getBtnProducos().addActionListener(l->abrirProductos());
+        vista.getBtnCategoria().addActionListener(l->abrirCategoria());
     }
     
     public void abrirProveedor(){
         VistaProveedor proveedor = new VistaProveedor();
         vista.getDktPrincipal().add(proveedor);
+        proveedor.setSize(vista.getDktPrincipal().getSize().width, vista.getDktPrincipal().getSize().height);
         controladorProveedor controPro = new controladorProveedor(proveedor);
         controPro.inicarControladorCliente();
     }
+    
+    public void abrirAdmin(){
+        VistaAdministrador proveedor = new VistaAdministrador();
+        vista.getDktPrincipal().add(proveedor);
+        proveedor.setSize(vista.getDktPrincipal().getSize().width, vista.getDktPrincipal().getSize().height);
+        controladorAdministrador controPro = new controladorAdministrador(proveedor);
+        controPro.iniciaControl();
+    }
+    
+    public void abrirEmpresas(){
+        VistaEmpresa proveedor = new VistaEmpresa();
+        vista.getDktPrincipal().add(proveedor);
+        proveedor.setSize(vista.getDktPrincipal().getSize().width, vista.getDktPrincipal().getSize().height);
+        ControladorEmpresas controPro = new ControladorEmpresas(proveedor);
+        controPro.inicarControlador();
+    }
+    
+    public void abrirProductos(){
+        VistaProducto proveedor = new VistaProducto();
+        vista.getDktPrincipal().add(proveedor);
+        proveedor.setSize(vista.getDktPrincipal().getSize().width, vista.getDktPrincipal().getSize().height);
+        controladorProducto controPro = new controladorProducto(proveedor);
+        controPro.iniciarControl();
+    }
+    public void abrirCategoria(){
+        VistaCategoria proveedor = new VistaCategoria();
+        vista.getDktPrincipal().add(proveedor);
+        proveedor.setSize(vista.getDktPrincipal().getSize().width, vista.getDktPrincipal().getSize().height);
+        controladorCategoria controPro = new controladorCategoria(proveedor);
+        controPro.iniciarcontroladorCategoria();
+    }
+    
+    
 }

@@ -27,19 +27,25 @@ public class controladorProducto {
 
     private VistaProducto vista;
     static public String id_categ;
+    
+    static public String codigoBuscar;
 
     public controladorProducto(VistaProducto vista) {
         this.vista = vista;
         vista.setVisible(true);
+        this.vista.setBorder(null);
+        this.vista.setLocation(0, -23);
         ModeloProducto.cargarBoxes(vista);
-        listaProductos();
+        
     }
 
     public void iniciarControl() {
+        listaProductos();
         vista.getTxtcodigoproducto().setEditable(false);
         vista.getBtnCREAR().addActionListener(l -> CrearProducto());
         vista.getBtnMODIFICAR().addActionListener(l -> ModificarProducto());
         vista.getBtnELIMINAR().addActionListener(l -> EliminarProducto());
+        vista.getBtnSalir().addActionListener(l -> salir());
         vista.getTblproductos().addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 llenarCampos();
@@ -48,18 +54,15 @@ public class controladorProducto {
         vista.getTxtBUSCAR().addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                String textoBusqueda = vista.getTxtBUSCAR().getText();
-
-                // Realizar la búsqueda directamente en la base de datos y obtener los productos filtrados
-                try {
-                    List<Producto> productosFiltrados = ModeloProducto.BuscarProducto(textoBusqueda);
-
-                    // Actualizar la tabla con los productos filtrados
-                    actualizarTabla(productosFiltrados);
-                } catch (Exception ex) {
-                    listaProductos();
-                }
-
+                codigoBuscar = "" + vista.getTxtBUSCAR().getText();
+                List<Producto> miListaPro = ModeloProducto.BuscarProducto();
+                DefaultTableModel mTabla = (DefaultTableModel) vista.getTblproductos().getModel();
+                mTabla.setRowCount(0);
+                miListaPro.forEach(pro -> {
+                     String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), pro.getDescripcion_producto(), String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getId_proveedor(),
+                pro.getId_categoria(), String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta())};
+            mTabla.addRow(rowData);
+                });
             }
         });
     }
@@ -222,4 +225,7 @@ public class controladorProducto {
         });
     }
 
+    public void salir(){
+        vista.dispose();
+    }
 }

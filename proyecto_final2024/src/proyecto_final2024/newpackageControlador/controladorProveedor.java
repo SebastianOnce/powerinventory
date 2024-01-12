@@ -35,7 +35,8 @@ public class controladorProveedor {
     public controladorProveedor(VistaProveedor vista) {
         this.vista = vista;
         this.vista.setVisible(true);
-        this.vista.setTitle("Power Inventori Proveedor");
+        this.vista.setBorder(null);
+        this.vista.setLocation(0, -23);
     }
 
     public void inicarControladorCliente() {
@@ -75,6 +76,7 @@ public class controladorProveedor {
         vista.getBtnEDITAR().addActionListener(l -> abrirDialogo(false));
         vista.getBtnGuardar().addActionListener(l -> grabarProveedor());
         vista.getBtnELIMINAR().addActionListener(l -> eliminarPro());
+        vista.getBtnSalir().addActionListener(l -> salir());
     }
 
     private void abrirDialogo(boolean nuevo) {
@@ -220,11 +222,15 @@ public class controladorProveedor {
 
     public void eliminarPro() {
         ModeloProveedor pro= new ModeloProveedor();
-        if (pro.eliminarPro()== null && pro.eliminarPersona() == null) {
+        if (pro.eliminarPro()== null) {
             JOptionPane.showMessageDialog(null, "Proveedor eliminada con exito");
             listarProveedores();
         } else {
             JOptionPane.showMessageDialog(null, "Proveedor no eliminada");
         }
+    }
+    
+    public void salir(){
+        vista.dispose();
     }
 }

@@ -39,8 +39,8 @@ public class controladorAdministrador {
     public controladorAdministrador(VistaAdministrador vista) {
         this.vista = vista;
         vista.setVisible(true);
-        vista.setLocationRelativeTo(null);
-        vista.setTitle("Power inventory Administrador");
+        this.vista.setBorder(null);
+        this.vista.setLocation(0, -23);
     }
 
     public void iniciaControl() {
@@ -84,6 +84,7 @@ public class controladorAdministrador {
         vista.getBtnEDITAR().addActionListener(l -> abrirDialogo(false));
         vista.getBtnGuardar().addActionListener(l -> grabarAdministrador());
         vista.getBtnELIMINAR().addActionListener(l -> eliminarAdmin());
+        vista.getBtnSalir().addActionListener(l -> salir());
 
     }
 
@@ -214,11 +215,15 @@ public class controladorAdministrador {
 
     public void eliminarAdmin() {
         ModeloAdministrador admin = new ModeloAdministrador();
-        if (admin.eliminarAdministrador()== null && admin.eliminarPersona()== null) {
+        if (admin.eliminarAdministrador()== null) {
             JOptionPane.showMessageDialog(null, "administrador eliminada con exito");
             listarAdministrador();
         } else {
             JOptionPane.showMessageDialog(null, "administrador no eliminada");
         }
+    }
+    
+    public void salir(){
+        vista.dispose();
     }
 }

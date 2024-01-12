@@ -29,19 +29,40 @@ public class VistaPrincipal extends javax.swing.JFrame {
         return dktPrincipal;
     }
 
+    public JButton getBtnAdmin() {
+        return btnAdmin;
+    }
+
+    public JButton getBtnCategoria() {
+        return btnCategoria;
+    }
+
+    public JButton getBtnEmpresa() {
+        return btnEmpresa;
+    }
+
+    public JButton getBtnProducos() {
+        return btnProducos;
+    }
+
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        btnClientes = new javax.swing.JButton();
         btnProveedores = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        btnAdmin = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        btnEmpresa = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JToolBar.Separator();
+        btnProducos = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JToolBar.Separator();
+        btnCategoria = new javax.swing.JButton();
         dktPrincipal = new javax.swing.JDesktopPane();
+        jPanel2 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -51,65 +72,44 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jToolBar1.setBackground(new java.awt.Color(255, 255, 51));
         jToolBar1.setRollover(true);
 
-        btnClientes.setText("Clientes");
-        btnClientes.setToolTipText("Ventana de clientes");
-        btnClientes.setFocusable(false);
-        btnClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnClientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btnClientes);
-
-        btnProveedores.setText("Proveedores");
+        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-proveedor-40.png"))); // NOI18N
         btnProveedores.setToolTipText("Ventana de proveedores");
         btnProveedores.setFocusable(false);
         btnProveedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnProveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnProveedores);
+        jToolBar1.add(jSeparator1);
 
-        jButton1.setText("Administradores");
-        jButton1.setToolTipText("Ventana de administradores");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
+        btnAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-administrador-del-hombre-40.png"))); // NOI18N
+        btnAdmin.setToolTipText("Ventana de administradores");
+        btnAdmin.setFocusable(false);
+        btnAdmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdmin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnAdmin);
+        jToolBar1.add(jSeparator2);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 51));
+        btnEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-empresa-40.png"))); // NOI18N
+        btnEmpresa.setToolTipText("Ventana de empresas");
+        btnEmpresa.setFocusable(false);
+        btnEmpresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEmpresa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnEmpresa);
+        jToolBar1.add(jSeparator3);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
+        btnProducos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-carros-40.png"))); // NOI18N
+        btnProducos.setToolTipText("Ventana de componentes de carros");
+        btnProducos.setFocusable(false);
+        btnProducos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProducos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnProducos);
+        jToolBar1.add(jSeparator4);
 
-        jPanel6.setBackground(new java.awt.Color(102, 102, 255));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 42, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 519, Short.MAX_VALUE)
-        );
-
-        jPanel2.setBackground(new java.awt.Color(51, 0, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 42, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        btnCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-lista-40.png"))); // NOI18N
+        btnCategoria.setToolTipText("Ventana de categoria");
+        btnCategoria.setFocusable(false);
+        btnCategoria.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCategoria.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnCategoria);
 
         javax.swing.GroupLayout dktPrincipalLayout = new javax.swing.GroupLayout(dktPrincipal);
         dktPrincipal.setLayout(dktPrincipalLayout);
@@ -119,7 +119,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
         );
         dktPrincipalLayout.setVerticalGroup(
             dktPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 520, Short.MAX_VALUE)
+        );
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 51));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 55, Short.MAX_VALUE)
         );
 
         jMenu1.setText("File");
@@ -134,26 +147,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1395, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dktPrincipal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1462, Short.MAX_VALUE)
+            .addComponent(dktPrincipal, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(dktPrincipal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dktPrincipal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -161,18 +166,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnAdmin;
+    private javax.swing.JButton btnCategoria;
+    private javax.swing.JButton btnEmpresa;
+    private javax.swing.JButton btnProducos;
     private javax.swing.JButton btnProveedores;
     private javax.swing.JDesktopPane dktPrincipal;
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JToolBar.Separator jSeparator3;
+    private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

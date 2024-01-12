@@ -34,18 +34,18 @@ public class Proyecto_final2024 {
 //        VistaProducto vista = new VistaProducto();
 //       controladorProducto control = new controladorProducto(vista);
 //       control.iniciarControl();
-//  
-//        VistaPrincipal vista = new VistaPrincipal();
-//       ControladorPaginaPrincipal control = new ControladorPaginaPrincipal(vista);
-//       control.inicarControladorPrincipal();
+  
+        VistaPrincipal vista = new VistaPrincipal();
+       ControladorPaginaPrincipal control = new ControladorPaginaPrincipal(vista);
+       control.inicarControladorPrincipal();
 //       
 //        VistaAdministrador vista = new VistaAdministrador();
 //       controladorAdministrador control = new controladorAdministrador(vista);
 //       control.iniciaControl();
-
-        VistaCategoria vista= new VistaCategoria();
-        controladorCategoria control=new controladorCategoria(vista);
-        control.iniciarcontroladorCategoria();
+//
+//        VistaCategoria vista= new VistaCategoria();
+//        controladorCategoria control=new controladorCategoria(vista);
+//        control.iniciarcontroladorCategoria();
     }
     
 }

@@ -40,29 +40,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" max="32767" attributes="0"/>
-          <Component id="jToolBar1" alignment="1" pref="1395" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="dktPrincipal" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-          </Group>
+          <Component id="jToolBar1" alignment="1" pref="1462" max="32767" attributes="0"/>
+          <Component id="dktPrincipal" alignment="1" max="32767" attributes="0"/>
+          <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jToolBar1" min="-2" pref="47" max="-2" attributes="0"/>
+              <Component id="jToolBar1" min="-2" pref="55" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+              <Component id="dktPrincipal" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel6" max="32767" attributes="0"/>
-                  <Component id="jPanel2" max="32767" attributes="0"/>
-                  <Component id="dktPrincipal" alignment="0" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,28 +68,64 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnClientes">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Clientes"/>
-            <Property name="toolTipText" type="java.lang.String" value="Ventana de clientes"/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="btnProveedores">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Proveedores"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons/icons8-proveedor-40.png"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" value="Ventana de proveedores"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator1">
+        </Component>
+        <Component class="javax.swing.JButton" name="btnAdmin">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Administradores"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons/icons8-administrador-del-hombre-40.png"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" value="Ventana de administradores"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
+        </Component>
+        <Component class="javax.swing.JButton" name="btnEmpresa">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons/icons8-empresa-40.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Ventana de empresas"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator3">
+        </Component>
+        <Component class="javax.swing.JButton" name="btnProducos">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons/icons8-carros-40.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Ventana de componentes de carros"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator4">
+        </Component>
+        <Component class="javax.swing.JButton" name="btnCategoria">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icons/icons8-lista-40.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Ventana de categoria"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -107,7 +133,22 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JDesktopPane" name="dktPrincipal">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="520" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanel2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="ff" red="ff" type="rgb"/>
@@ -122,62 +163,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
-    <Container class="javax.swing.JPanel" name="jPanel6">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="66" red="66" type="rgb"/>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="519" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
-    <Container class="javax.swing.JPanel" name="jPanel2">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="0" red="33" type="rgb"/>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
-    <Container class="javax.swing.JDesktopPane" name="dktPrincipal">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="55" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

@@ -152,12 +152,10 @@ public class ModeloProveedor extends Proveedor {
     
     public SQLException eliminarPro() {
         String sql;
-        sql = "DELETE FROM public.proveedor where cedula = '" + controladorProveedor.cedulaC + "'";
-        return cpg.accionDB(sql);//DEVUELVO NULL SI ES CORRECTO.
-    }
-    public SQLException eliminarPersona() {
         String sql2;
+        sql = "DELETE FROM public.proveedor where cedula = '" + controladorProveedor.cedulaC + "'";
         sql2 = "DELETE FROM public.persona where cedula = '" + controladorProveedor.cedulaC + "'";
+        cpg.accionDB(sql);
         return cpg.accionDB(sql2);//DEVUELVO NULL SI ES CORRECTO.
     }
     

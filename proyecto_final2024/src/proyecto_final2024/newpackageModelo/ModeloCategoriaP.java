@@ -76,7 +76,7 @@ public class ModeloCategoriaP extends Categoria {
         Conexion con = new Conexion();
         List<Categoria> listaCategorias = new ArrayList<>();
         String sql;
-        sql = "SELECT id_categoria, nombre_categoria, descripcion_categoria FROM categoria_producto WHERE id_categoria='" + controladorCategoria.id_cat + "'";
+        sql = "SELECT id_categoria, nombre_categoria, descripcion_categoria FROM categoria_producto WHERE CAST(id_categoria AS VARCHAR) LIKE '" + controladorCategoria.idBuscara + "%'";
         ResultSet rs = con.consultaDB(sql);
         try {
             while (rs.next()) {
@@ -87,7 +87,7 @@ public class ModeloCategoriaP extends Categoria {
                 listaCategorias.add(catego);
             }
             rs.close();
-            return listaCategorias();
+            return listaCategorias;
         } catch (SQLException ex) {
             Logger.getLogger(ModeloAdministrador.class.getName()).log(Level.SEVERE, null, ex);
             return null;

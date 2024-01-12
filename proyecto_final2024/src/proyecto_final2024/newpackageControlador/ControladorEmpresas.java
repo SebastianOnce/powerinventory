@@ -12,13 +12,8 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static proyecto_final2024.newpackageControlador.controladorProveedor.cedulaC;
-import static proyecto_final2024.newpackageControlador.controladorProveedor.cedulaCienteBuscado;
-import static proyecto_final2024.newpackageControlador.controladorProveedor.nombresC;
 import proyecto_final2024.newpackageModelo.Empresa;
 import proyecto_final2024.newpackageModelo.ModeloEmpresa;
-import proyecto_final2024.newpackageModelo.ModeloProveedor;
-import proyecto_final2024.newpackageModelo.Proveedor;
 import proyecto_final2024.newpackageVista.VistaEmpresa;
 
 /**
@@ -34,8 +29,9 @@ public class ControladorEmpresas {
     
     public ControladorEmpresas(VistaEmpresa vista) {
         this.vista = vista;
-        this.vista.setTitle("Power Inventory Empresas");
         this.vista.setVisible(true);
+        this.vista.setBorder(null);
+        this.vista.setLocation(0, -23);
     }
     
     public void inicarControlador(){
@@ -68,6 +64,7 @@ public class ControladorEmpresas {
         vista.getBtnEDITAR().addActionListener(l -> abrirDialogo(false));
         vista.getBtnGuardar().addActionListener(l -> grabareditarEmpresa());
         vista.getBtnELIMINAR().addActionListener(l -> eliminarEmpre());
+        vista.getBtnSalir().addActionListener(l -> salir());
     }
     
     private void abrirDialogo(boolean nuevo) {
@@ -148,4 +145,8 @@ public class ControladorEmpresas {
             vista.getTxtNombreEm().setText("");
             vista.getTxtDs().setText("");
         }
+    
+    public void salir(){
+        vista.dispose();
+    }
 }
