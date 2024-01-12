@@ -60,7 +60,7 @@ public class controladorProducto {
                 mTabla.setRowCount(0);
                 miListaPro.forEach(pro -> {
                      String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), pro.getDescripcion_producto(), String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getId_proveedor(),
-                pro.getId_categoria(), String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta())};
+                pro.getId_categoria(), String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta()), pro.getCodigo_barras()};
             mTabla.addRow(rowData);
                 });
             }
@@ -82,6 +82,7 @@ public class controladorProducto {
         String id_categoria = vista.getCbcategoria().getSelectedItem().toString().split("-", 2)[0];;
         String precio_de_compra = vista.getTxtpreciocompra().getText();
         String precio_de_venta = vista.getTxtprecioVenta().getText();
+        String codigo_barras = vista.getTxtcodigobarras().getText();
 
         ModeloProducto producto = new ModeloProducto();
 
@@ -93,6 +94,7 @@ public class controladorProducto {
         producto.setId_categoria(id_categoria);
         producto.setPrecio_de_compra(Float.valueOf(precio_de_compra));
         producto.setPrecio_de_venta(Float.valueOf(precio_de_venta));
+        producto.setCodigo_barras(codigo_barras);
 
         if (producto.CrearProducto() == null) {
             JOptionPane.showMessageDialog(vista, "Producto creado exitosamente");
@@ -120,6 +122,7 @@ public class controladorProducto {
         String id_categoria = vista.getCbcategoria().getSelectedItem().toString().split("-", 2)[0];;
         String precio_de_compra = vista.getTxtpreciocompra().getText();
         String precio_de_venta = vista.getTxtprecioVenta().getText();
+        String codigo_barras = vista.getTxtcodigobarras().getText();
 
         ModeloProducto producto = new ModeloProducto();
 
@@ -132,6 +135,7 @@ public class controladorProducto {
         producto.setId_categoria(id_categoria);
         producto.setPrecio_de_compra(Float.valueOf(precio_de_compra));
         producto.setPrecio_de_venta(Float.valueOf(precio_de_venta));
+        producto.setCodigo_barras(codigo_barras);
 
         if (producto.modificarProducto() == null) {
             JOptionPane.showMessageDialog(vista, "Producto modificado exitosamente");
@@ -177,6 +181,7 @@ public class controladorProducto {
         vista.getCbcategoria().setSelectedIndex(0);
         vista.getTxtpreciocompra().setText("");
         vista.getTxtprecioVenta().setText("");
+        vista.getTxtcodigobarras().setText("");
     }
 
     public void listaProductos() {
@@ -186,7 +191,7 @@ public class controladorProducto {
         mTabla.setNumRows(0);//limpio la tabla
         listap.stream().forEach(pro -> {
             String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), pro.getDescripcion_producto(), String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getId_proveedor(),
-                pro.getId_categoria(), String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta())};
+                pro.getId_categoria(), String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta()), pro.getCodigo_barras()};
             mTabla.addRow(rowData);
         });
     }
@@ -207,6 +212,7 @@ public class controladorProducto {
             vista.getCbcategoria().setSelectedItem(vista.getTblproductos().getValueAt(i, 6).toString());
             vista.getTxtpreciocompra().setText(vista.getTblproductos().getValueAt(i, 7).toString());
             vista.getTxtprecioVenta().setText(vista.getTblproductos().getValueAt(i, 8).toString());
+            vista.getTxtcodigobarras().setText(vista.getTblproductos().getValueAt(i, 9).toString());
         } else {
             JOptionPane.showMessageDialog(null, "Primero elige una fila");
         }
@@ -220,7 +226,7 @@ public class controladorProducto {
         productos.forEach(pro -> {
             String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), pro.getDescripcion_producto(),
                 String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getId_proveedor(),
-                pro.getId_categoria(), String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta())};
+                pro.getId_categoria(), String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta()), pro.getCodigo_barras()};
             mTabla.addRow(rowData);
         });
     }

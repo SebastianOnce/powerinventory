@@ -34,16 +34,16 @@ public class ModeloProducto extends Producto {
     public SQLException CrearProducto() {
         String sql;
         sql = "INSERT INTO producto (nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, "
-                + "precio_de_compra, precio_de_venta, disponibilidad, id_categoria)"
+                + "precio_de_compra, precio_de_venta, disponibilidad, id_categoria, codigo_barras)"
                 + " VALUES('" + getNombre_producto() + "', '" + getId_proveedor() + "', '" + getDescripcion_producto() + "', '" + getCantidad_en_bodega() + "',  "
-                + "'" + getPrecio_de_compra() + "', '" + getPrecio_de_venta() + "', '" + getDisponibilidad() + "', '" + getId_categoria() + "')";
+                + "'" + getPrecio_de_compra() + "', '" + getPrecio_de_venta() + "', '" + getDisponibilidad() + "', '" + getId_categoria() + "', '" + getCodigo_barras() + "')";
         return con.accionDB(sql);
     }
 
     public SQLException modificarProducto() {
         String sql;
         sql = "UPDATE producto SET nombre_producto='" + getNombre_producto() + "', id_proveedor='" + getId_proveedor() + "', descripcion_producto='" + getDescripcion_producto() + "', cantidad_en_bodega='" + getCantidad_en_bodega() + "', "
-                + "disponibilidad='" + getDisponibilidad() + "', id_categoria='" + getId_categoria() + "', precio_de_compra='" + getPrecio_de_compra() + "', precio_de_venta='" + getPrecio_de_venta() + "'"
+                + "disponibilidad='" + getDisponibilidad() + "', id_categoria='" + getId_categoria() + "', precio_de_compra='" + getPrecio_de_compra() + "', precio_de_venta='" + getPrecio_de_venta() + "', codigo_barras='" + getCodigo_barras()+ "'"
                 + " WHERE id_producto='" + getId_producto() + "'";
         return con.accionDB(sql);
     }
@@ -60,7 +60,7 @@ public class ModeloProducto extends Producto {
 
         String sql;
         sql = "SELECT id_producto, nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, disponibilidad, "
-                + "id_categoria, precio_de_compra, precio_de_venta FROM producto";
+                + "id_categoria, precio_de_compra, precio_de_venta, codigo_barras FROM producto";
         ResultSet rs = cpg.consultaDB(sql);
 
         try {
@@ -77,6 +77,7 @@ public class ModeloProducto extends Producto {
 
                 Miproducto.setPrecio_de_compra(Float.valueOf(rs.getString("precio_de_compra")));
                 Miproducto.setPrecio_de_venta(Float.valueOf(rs.getString("precio_de_venta")));
+                Miproducto.setCodigo_barras(rs.getString("codigo_barras"));
 
                 listaProductos.add(Miproducto);
 
@@ -95,7 +96,7 @@ public class ModeloProducto extends Producto {
 
         String sql;
         sql = "SELECT id_producto, nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, disponibilidad, "
-                + "id_categoria, precio_de_compra, precio_de_venta FROM producto WHERE CAST(id_producto AS VARCHAR) LIKE '" + controladorProducto.codigoBuscar + "%'";
+                + "id_categoria, precio_de_compra, precio_de_venta, codigo_barras FROM producto WHERE CAST(id_producto AS VARCHAR) LIKE '" + controladorProducto.codigoBuscar + "%'";
        ResultSet rs = cpg.consultaDB(sql);
     try{
             while (rs.next()) {
@@ -111,6 +112,7 @@ public class ModeloProducto extends Producto {
 
                 Miproducto.setPrecio_de_compra(Float.valueOf(rs.getString("precio_de_compra")));
                 Miproducto.setPrecio_de_venta(Float.valueOf(rs.getString("precio_de_venta")));
+                Miproducto.setCodigo_barras(rs.getString("codigo_barras"));
 
                 listaProductos.add(Miproducto);
 
@@ -131,7 +133,7 @@ public class ModeloProducto extends Producto {
     }
 
     public static void cargarComboBox(JComboBox comboBox, String sql, String errorMsg) {
-        try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/superinver", "postgres", "1234");
+        try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/super", "postgres", "1234");
                 PreparedStatement preparedStatement = con.prepareStatement(sql);
                 ResultSet resultSet = preparedStatement.executeQuery()) {
             System.out.println("Consulta SQL: " + sql);

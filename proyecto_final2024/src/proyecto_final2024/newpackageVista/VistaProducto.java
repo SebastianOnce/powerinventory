@@ -104,6 +104,10 @@ public class VistaProducto extends javax.swing.JInternalFrame {
     public JButton getBtnSalir() {
         return btnSalir;
     }
+
+    public JTextField getTxtcodigobarras() {
+        return txtcodigobarras;
+    }
  
     
     /**
@@ -137,6 +141,8 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
         txtindicador = new javax.swing.JLabel();
         txtnombre = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtcodigobarras = new javax.swing.JTextField();
         btnCREAR = new javax.swing.JButton();
         btnMODIFICAR = new javax.swing.JButton();
         btnELIMINAR = new javax.swing.JButton();
@@ -200,6 +206,9 @@ public class VistaProducto extends javax.swing.JInternalFrame {
 
         txtnombre.setToolTipText("");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Codigo de barras:");
+
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
         jDialog1Layout.setHorizontalGroup(
@@ -242,7 +251,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtnombre))))
                 .addGap(18, 18, 18)
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jDialog1Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -255,7 +264,11 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                             .addGroup(jDialog1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(txtindicador, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cbcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtcodigobarras)))
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -302,17 +315,21 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(txtprecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtprecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDialog1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel18))
+                            .addGroup(jDialog1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(txtcantidadbodega, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jDialog1Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addComponent(jLabel16)))
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDialog1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel18))
-                    .addGroup(jDialog1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtcantidadbodega, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel16)
+                        .addGap(29, 29, 29)
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtcodigobarras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(25, 25, 25)
                 .addComponent(btnGuardar)
                 .addContainerGap())
@@ -332,14 +349,14 @@ public class VistaProducto extends javax.swing.JInternalFrame {
 
         tblproductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID Producto", "Nombre", "Descripcion", "Cant en bodega", "Disponibilidad", "ID Proveedor", "Categoria", "Precio de compra", "Precio de venta"
+                "ID Producto", "Nombre", "Descripcion", "Cant en bodega", "Disponibilidad", "ID Proveedor", "Categoria", "Precio de compra", "Precio de venta", "Codigo de barras"
             }
         ));
         jScrollPane1.setViewportView(tblproductos);
@@ -461,6 +478,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel8;
@@ -470,6 +488,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblproductos;
     private javax.swing.JTextField txtBUSCAR;
     private javax.swing.JTextField txtcantidadbodega;
+    private javax.swing.JTextField txtcodigobarras;
     private javax.swing.JTextField txtcodigoproducto;
     private javax.swing.JTextField txtdescripcion;
     private javax.swing.JLabel txtindicador;

@@ -10,8 +10,8 @@ import java.util.Date;
  *
  * @author elshi
  *///
-public class Producto extends Proveedor{
-    
+public class Producto extends Proveedor {
+
     private String id_producto;
     private String nombre_producto;
     private String descripcion_producto;
@@ -21,14 +21,13 @@ public class Producto extends Proveedor{
     private float precio_de_compra;
     private float precio_de_venta;
     private Byte foto_producto;
-    
-    
+    private String codigo_barras;
 
     public Producto() {
         super();
     }
 
-    public Producto(String id_producto, String nombre_producto, String descripcion_producto, int cantidad_en_bodega, String disponibilidad, String id_categoria, float precio_de_compra, float precio_de_venta, Byte foto_producto, String id_proveedor, String id_empresa, String id_persona, String cedula, String nombres, String apellidos, String direccion, String genero, String telefono, Date fecha_nacimiento) {
+    public Producto(String id_producto, String nombre_producto, String descripcion_producto, int cantidad_en_bodega, String disponibilidad, String id_categoria, float precio_de_compra, float precio_de_venta, Byte foto_producto, String codigo_barras, String id_proveedor, String id_empresa, String id_persona, String cedula, String nombres, String apellidos, String direccion, String genero, String telefono, Date fecha_nacimiento) {
         super(id_proveedor, id_empresa, id_persona, cedula, nombres, apellidos, direccion, genero, telefono, fecha_nacimiento);
         this.id_producto = id_producto;
         this.nombre_producto = nombre_producto;
@@ -39,8 +38,16 @@ public class Producto extends Proveedor{
         this.precio_de_compra = precio_de_compra;
         this.precio_de_venta = precio_de_venta;
         this.foto_producto = foto_producto;
+        this.codigo_barras = codigo_barras;
     }
-    
+
+    public String getCodigo_barras() {
+        return codigo_barras;
+    }
+
+    public void setCodigo_barras(String codigo_barras) {
+        this.codigo_barras = codigo_barras;
+    }
 
     public float getPrecio_de_compra() {
         return precio_de_compra;
@@ -105,7 +112,7 @@ public class Producto extends Proveedor{
     public void setFoto_producto(Byte foto_producto) {
         this.foto_producto = foto_producto;
     }
-    
+
     public String getId_categoria() {
         return id_categoria;
     }
@@ -114,5 +121,4 @@ public class Producto extends Proveedor{
         this.id_categoria = id_categoria;
     }
 
-    
 }
