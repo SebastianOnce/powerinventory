@@ -486,7 +486,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblproductos;
-    private javax.swing.JTextField txtBUSCAR;
+    private static javax.swing.JTextField txtBUSCAR;
     private javax.swing.JTextField txtcantidadbodega;
     private javax.swing.JTextField txtcodigobarras;
     private javax.swing.JTextField txtcodigoproducto;

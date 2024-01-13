@@ -15,7 +15,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import proyecto_final2024.newpackageControlador.controladorCategoria;
 import proyecto_final2024.newpackageControlador.controladorProducto;
 import proyecto_final2024.newpackageVista.VistaProducto;
 
@@ -96,7 +95,7 @@ public class ModeloProducto extends Producto {
 
         String sql;
         sql = "SELECT id_producto, nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, disponibilidad, "
-                + "id_categoria, precio_de_compra, precio_de_venta, codigo_barras FROM producto WHERE CAST(id_producto AS VARCHAR) LIKE '" + controladorProducto.codigoBuscar + "%'";
+                + "id_categoria, precio_de_compra, precio_de_venta, codigo_barras FROM producto WHERE CAST(id_producto AS VARCHAR) LIKE '" + controladorProducto.codigoBuscar + "%' or codigo_barras LIKE '" + controladorProducto.codigoBuscar + "%'";
        ResultSet rs = cpg.consultaDB(sql);
     try{
             while (rs.next()) {
@@ -133,7 +132,7 @@ public class ModeloProducto extends Producto {
     }
 
     public static void cargarComboBox(JComboBox comboBox, String sql, String errorMsg) {
-        try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/super", "postgres", "1234");
+        try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/superinver", "postgres", "1234");
                 PreparedStatement preparedStatement = con.prepareStatement(sql);
                 ResultSet resultSet = preparedStatement.executeQuery()) {
             System.out.println("Consulta SQL: " + sql);
@@ -147,6 +146,40 @@ public class ModeloProducto extends Producto {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(errorMsg);
+        }
+    }
+    
+    public static List<Producto> BuscarProductoCodigoBarras() {
+        Conexion cpg = new Conexion();
+        List<Producto> listaProductos = new ArrayList<>();
+
+        String sql;
+        sql = "SELECT id_producto, nombre_producto, id_proveedor, descripcion_producto, cantidad_en_bodega, disponibilidad, "
+                + "id_categoria, precio_de_compra, precio_de_venta, codigo_barras FROM producto WHERE codigo_barras = '"+ controladorProducto.codigoBuscar+"'";
+       ResultSet rs = cpg.consultaDB(sql);
+    try{
+            while (rs.next()) {
+                Producto Miproducto = new Producto();
+                Miproducto.setId_producto(rs.getString("id_producto"));
+                Miproducto.setNombre_producto(rs.getString("nombre_producto"));
+                Miproducto.setDescripcion_producto(rs.getString("descripcion_producto"));
+                Miproducto.setDisponibilidad(rs.getString("disponibilidad"));
+                Miproducto.setCantidad_en_bodega(Integer.valueOf(rs.getString("cantidad_en_bodega")));
+
+                Miproducto.setId_categoria(rs.getString("id_categoria"));
+                Miproducto.setId_proveedor(rs.getString("id_proveedor"));
+
+                Miproducto.setPrecio_de_compra(Float.valueOf(rs.getString("precio_de_compra")));
+                Miproducto.setPrecio_de_venta(Float.valueOf(rs.getString("precio_de_venta")));
+                Miproducto.setCodigo_barras(rs.getString("codigo_barras"));
+
+                listaProductos.add(Miproducto);
+
+            }
+            rs.close();
+            return listaProductos;
+        } catch (SQLException ex) {
+            return null;
         }
     }
 }

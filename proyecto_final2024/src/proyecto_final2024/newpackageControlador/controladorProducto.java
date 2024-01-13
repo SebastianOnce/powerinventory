@@ -1,17 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyecto_final2024.newpackageControlador;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyecto_final2024.newpackageModelo.Conexion;
@@ -27,8 +25,13 @@ public class controladorProducto {
 
     private VistaProducto vista;
     static public String id_categ;
-    
     static public String codigoBuscar;
+
+    public Socket s;
+    public ServerSocket ssk;
+    public InputStreamReader isr;
+    public BufferedReader br;
+    public String mensaje;
 
     public controladorProducto(VistaProducto vista) {
         this.vista = vista;
@@ -42,15 +45,17 @@ public class controladorProducto {
     public void iniciarControl() {
         listaProductos();
         vista.getTxtcodigoproducto().setEditable(false);
-        vista.getBtnCREAR().addActionListener(l -> CrearProducto());
-        vista.getBtnMODIFICAR().addActionListener(l -> ModificarProducto());
+        vista.getBtnCREAR().addActionListener(l -> abrirDialogo(true));
+        vista.getBtnMODIFICAR().addActionListener(l -> abrirDialogo(false));
         vista.getBtnELIMINAR().addActionListener(l -> EliminarProducto());
-        vista.getBtnSalir().addActionListener(l -> salir());
+        vista.getBtnGuardar().addActionListener(l -> CrearModificarProducto());
+        vista.getBtnBUSCAR().addActionListener(l -> buscarProducto());
         vista.getTblproductos().addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 llenarCampos();
             }
         });
+
         vista.getTxtBUSCAR().addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -59,90 +64,104 @@ public class controladorProducto {
                 DefaultTableModel mTabla = (DefaultTableModel) vista.getTblproductos().getModel();
                 mTabla.setRowCount(0);
                 miListaPro.forEach(pro -> {
-                     String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), pro.getDescripcion_producto(), String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getId_proveedor(),
-                pro.getId_categoria(), String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta()), pro.getCodigo_barras()};
-            mTabla.addRow(rowData);
+                    String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), pro.getDescripcion_producto(), String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getId_proveedor(),
+                        pro.getId_categoria(), String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta()), pro.getCodigo_barras()};
+                    mTabla.addRow(rowData);
                 });
             }
         });
+        leercodigodeBarras();
     }
 
-    public void CrearProducto() {
-        String disp = "";
-        if (vista.getChbdisponibilidad().isSelected()) {
-            disp = "si";
-        } else {
-            disp = "no";
+    private void abrirDialogo(boolean nuevo) {
+//        lipiar();
+        if (nuevo) {
+            vista.getjDialog1().setTitle("Crear nuevo producto");
+        } else if (!nuevo) {
+            vista.getjDialog1().setTitle("Editar producto");
+            llenarCampos();
         }
-        String nombre_producto = vista.getTxtnombre().getText();
-        String id_proveedor = vista.getCbcodigoproveedor().getSelectedItem().toString().split("-", 2)[0];
-        String descripcion_producto = vista.getTxtdescripcion().getText();
-        String cantidad_en_bodega = vista.getTxtcantidadbodega().getText();
-        String disponibilidad = disp;
-        String id_categoria = vista.getCbcategoria().getSelectedItem().toString().split("-", 2)[0];;
-        String precio_de_compra = vista.getTxtpreciocompra().getText();
-        String precio_de_venta = vista.getTxtprecioVenta().getText();
-        String codigo_barras = vista.getTxtcodigobarras().getText();
-
-        ModeloProducto producto = new ModeloProducto();
-
-        producto.setNombre_producto(nombre_producto);
-        producto.setId_proveedor(id_proveedor);
-        producto.setDescripcion_producto(descripcion_producto);
-        producto.setCantidad_en_bodega(Integer.valueOf(cantidad_en_bodega));
-        producto.setDisponibilidad(disponibilidad);
-        producto.setId_categoria(id_categoria);
-        producto.setPrecio_de_compra(Float.valueOf(precio_de_compra));
-        producto.setPrecio_de_venta(Float.valueOf(precio_de_venta));
-        producto.setCodigo_barras(codigo_barras);
-
-        if (producto.CrearProducto() == null) {
-            JOptionPane.showMessageDialog(vista, "Producto creado exitosamente");
-            vaciarFields();
-            listaProductos();
-        } else {
-            JOptionPane.showMessageDialog(vista, "Error al crear producto");
-        }
-
+        vista.getjDialog1().setLocationRelativeTo(vista);
+        vista.getjDialog1().setSize(600, 600);
+        vista.getjDialog1().setVisible(true);
+        vista.getjDialog1().setLocationRelativeTo(null);
     }
 
-    public void ModificarProducto() {
-        String disp = "";
-        if (vista.getChbdisponibilidad().isSelected()) {
-            disp = "si";
-        } else {
-            disp = "no";
-        }
-        String id_producto = vista.getTxtcodigoproducto().getText();
-        String nombre_producto = vista.getTxtnombre().getText();
-        String id_proveedor = vista.getCbcodigoproveedor().getSelectedItem().toString().split("-", 2)[0];
-        String descripcion_producto = vista.getTxtdescripcion().getText();
-        String cantidad_en_bodega = vista.getTxtcantidadbodega().getText();
-        String disponibilidad = disp;
-        String id_categoria = vista.getCbcategoria().getSelectedItem().toString().split("-", 2)[0];;
-        String precio_de_compra = vista.getTxtpreciocompra().getText();
-        String precio_de_venta = vista.getTxtprecioVenta().getText();
-        String codigo_barras = vista.getTxtcodigobarras().getText();
+    public void CrearModificarProducto() {
+        if (vista.getjDialog1().getTitle().contentEquals("Crear nuevo producto")) {
+            String disp = "";
+            if (vista.getChbdisponibilidad().isSelected()) {
+                disp = "si";
+            } else {
+                disp = "no";
+            }
+            String nombre_producto = vista.getTxtnombre().getText();
+            String id_proveedor = vista.getCbcodigoproveedor().getSelectedItem().toString().split("-", 2)[0];
+            String descripcion_producto = vista.getTxtdescripcion().getText();
+            String cantidad_en_bodega = vista.getTxtcantidadbodega().getText();
+            String disponibilidad = disp;
+            String id_categoria = vista.getCbcategoria().getSelectedItem().toString().split("-", 2)[0];;
+            String precio_de_compra = vista.getTxtpreciocompra().getText();
+            String precio_de_venta = vista.getTxtprecioVenta().getText();
+            String codigoBarras = vista.getTxtcodigobarras().getText();
 
-        ModeloProducto producto = new ModeloProducto();
+            ModeloProducto producto = new ModeloProducto();
 
-        producto.setId_producto(id_producto);
-        producto.setNombre_producto(nombre_producto);
-        producto.setId_proveedor(id_proveedor);
-        producto.setDescripcion_producto(descripcion_producto);
-        producto.setCantidad_en_bodega(Integer.valueOf(cantidad_en_bodega));
-        producto.setDisponibilidad(disponibilidad);
-        producto.setId_categoria(id_categoria);
-        producto.setPrecio_de_compra(Float.valueOf(precio_de_compra));
-        producto.setPrecio_de_venta(Float.valueOf(precio_de_venta));
-        producto.setCodigo_barras(codigo_barras);
+            producto.setNombre_producto(nombre_producto);
+            producto.setId_proveedor(id_proveedor);
+            producto.setDescripcion_producto(descripcion_producto);
+            producto.setCantidad_en_bodega(Integer.valueOf(cantidad_en_bodega));
+            producto.setDisponibilidad(disponibilidad);
+            producto.setId_categoria(id_categoria);
+            producto.setPrecio_de_compra(Float.valueOf(precio_de_compra));
+            producto.setPrecio_de_venta(Float.valueOf(precio_de_venta));
+            producto.setCodigo_barras(codigoBarras);
 
-        if (producto.modificarProducto() == null) {
-            JOptionPane.showMessageDialog(vista, "Producto modificado exitosamente");
-            vaciarFields();
-            listaProductos();
-        } else {
-            JOptionPane.showMessageDialog(vista, "Error al modificar producto");
+            if (producto.CrearProducto() == null) {
+                JOptionPane.showMessageDialog(vista, "Producto creado exitosamente");
+                vaciarFields();
+                listaProductos();
+            } else {
+                JOptionPane.showMessageDialog(vista, "Error al crear producto");
+            }
+        } else if (vista.getjDialog1().getTitle().contentEquals("Editar producto")) {
+            String disp = "";
+            if (vista.getChbdisponibilidad().isSelected()) {
+                disp = "si";
+            } else {
+                disp = "no";
+            }
+            String id_producto = vista.getTxtcodigoproducto().getText();
+            String nombre_producto = vista.getTxtnombre().getText();
+            String id_proveedor = vista.getCbcodigoproveedor().getSelectedItem().toString().split("-", 2)[0];
+            String descripcion_producto = vista.getTxtdescripcion().getText();
+            String cantidad_en_bodega = vista.getTxtcantidadbodega().getText();
+            String disponibilidad = disp;
+            String id_categoria = vista.getCbcategoria().getSelectedItem().toString().split("-", 2)[0];;
+            String precio_de_compra = vista.getTxtpreciocompra().getText();
+            String precio_de_venta = vista.getTxtprecioVenta().getText();
+            String codigoBarras = vista.getTxtcodigobarras().getText();
+
+            ModeloProducto producto = new ModeloProducto();
+
+            producto.setId_producto(id_producto);
+            producto.setNombre_producto(nombre_producto);
+            producto.setId_proveedor(id_proveedor);
+            producto.setDescripcion_producto(descripcion_producto);
+            producto.setCantidad_en_bodega(Integer.valueOf(cantidad_en_bodega));
+            producto.setDisponibilidad(disponibilidad);
+            producto.setId_categoria(id_categoria);
+            producto.setPrecio_de_compra(Float.valueOf(precio_de_compra));
+            producto.setPrecio_de_venta(Float.valueOf(precio_de_venta));
+             producto.setCodigo_barras(codigoBarras);
+
+            if (producto.modificarProducto() == null) {
+                JOptionPane.showMessageDialog(vista, "Producto modificado exitosamente");
+                vaciarFields();
+                listaProductos();
+            } else {
+                JOptionPane.showMessageDialog(vista, "Error al modificar producto");
+            }
         }
 
     }
@@ -212,7 +231,6 @@ public class controladorProducto {
             vista.getCbcategoria().setSelectedItem(vista.getTblproductos().getValueAt(i, 6).toString());
             vista.getTxtpreciocompra().setText(vista.getTblproductos().getValueAt(i, 7).toString());
             vista.getTxtprecioVenta().setText(vista.getTblproductos().getValueAt(i, 8).toString());
-            vista.getTxtcodigobarras().setText(vista.getTblproductos().getValueAt(i, 9).toString());
         } else {
             JOptionPane.showMessageDialog(null, "Primero elige una fila");
         }
@@ -226,12 +244,52 @@ public class controladorProducto {
         productos.forEach(pro -> {
             String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), pro.getDescripcion_producto(),
                 String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getId_proveedor(),
-                pro.getId_categoria(), String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta()), pro.getCodigo_barras()};
+                pro.getId_categoria(), String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta())};
             mTabla.addRow(rowData);
         });
     }
 
-    public void salir(){
-        vista.dispose();
+    public void buscarProducto() {
+        codigoBuscar = vista.getTxtBUSCAR().getText();
+        List<Producto> listap = ModeloProducto.BuscarProducto();
+        DefaultTableModel mTabla;
+        mTabla = (DefaultTableModel) vista.getTblproductos().getModel();
+        mTabla.setNumRows(0);//limpio la tabla
+        listap.stream().forEach(pro -> {
+            String[] rowData = {pro.getId_producto(), pro.getNombre_producto(), pro.getDescripcion_producto(), String.valueOf(pro.getCantidad_en_bodega()), pro.getDisponibilidad(), pro.getId_proveedor(),
+                pro.getId_categoria(), String.valueOf(pro.getPrecio_de_compra()), String.valueOf(pro.getPrecio_de_venta()),pro.getCodigo_barras()};
+            mTabla.addRow(rowData);
+        });
+    }
+    
+    public void leercodigodeBarras() {
+        new Thread(() -> {
+            try {
+                System.out.println("entro");
+                ssk = new ServerSocket(8000);
+
+                while (true) {
+                    s = ssk.accept();
+                    isr = new InputStreamReader(s.getInputStream());
+                    br = new BufferedReader(isr);
+                    mensaje = br.readLine();
+
+                    System.out.println(mensaje);
+                    if (vista.getTxtBUSCAR().getText().equals("")) {
+                        vista.getTxtBUSCAR().setText(mensaje);
+                        codigoBuscar = vista.getTxtBUSCAR().getText();
+                    } else {
+                        vista.getTxtBUSCAR().setText("");
+                        vista.getTxtBUSCAR().setText(mensaje);
+
+                        codigoBuscar = vista.getTxtBUSCAR().getText();
+                    }
+                    System.out.println("salio");
+                }
+
+            } catch (IOException e) {
+                Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }).start();
     }
 }
