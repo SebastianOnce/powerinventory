@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USER/escritorio/ProyectoFinal2024/powerinventory/proyecto_final2024/src/proyecto_final2024/newpackageControlador/controladorCategoria.java</file>
+            <file>file:/C:/Users/USER/escritorio/ProyectoFinal2024/powerinventory/proyecto_final2024/src/proyecto_final2024/newpackageModelo/Conexion.java</file>
+            <file>file:/C:/Users/USER/escritorio/ProyectoFinal2024/powerinventory/proyecto_final2024/src/proyecto_final2024/newpackageModelo/ModeloProducto.java</file>
+            <file>file:/C:/Users/USER/escritorio/ProyectoFinal2024/powerinventory/proyecto_final2024/src/proyecto_final2024/newpackageControlador/controladorProducto.java</file>
+            <file>file:/C:/Users/USER/escritorio/ProyectoFinal2024/powerinventory/proyecto_final2024/src/proyecto_final2024/newpackageVista/VistaProducto.java</file>
         </group>
     </open-files>
 </project-private>
