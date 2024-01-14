@@ -19,7 +19,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static proyecto_final2024.newpackageControlador.controladorProducto.codigoBuscar;
 import proyecto_final2024.newpackageModelo.ModeloFactura;
 import proyecto_final2024.newpackageModelo.Producto;
 import proyecto_final2024.newpackageModelo.Proveedor;
@@ -36,9 +35,9 @@ public class ControladorFactura {
     VistaFacrura vista;
 
     static public String cedigo, nombre, apellido, cedula;
-    static public String codigobarras,nombreProducto,precio,cantidad;
+    static public String codigobarras, nombreProducto, precio, cantidad;
     static public String codigoBuscar;
-    
+
     public Socket s;
     public ServerSocket ssk;
     public InputStreamReader isr;
@@ -161,6 +160,7 @@ public class ControladorFactura {
         vista.getTxtcedulacliente().setText(cedula);
         vista.getjDialogClientes().dispose();
     }
+
     public void enviarcodigoProducto() {
         vista.getTxtcodigoproducto().setText(codigobarras);
         vista.getjDialogProductos().dispose();
@@ -170,7 +170,6 @@ public class ControladorFactura {
         ModeloFactura.BuscarProducto(vista.getTxtcodigoproducto().getText());
         vista.getLblNombreProducto().setText(ModeloFactura.nombre);
     }
-    
 
     public void añadirProductos() {
         ModeloFactura.MandarProducto(vista.getTxtcodigoproducto().getText());
@@ -182,6 +181,7 @@ public class ControladorFactura {
             vista.getTxtcantidadproducto().getText()
         });
         vista.getTbdetallefactura().setModel(mTabla);
+        totales();
     }
 
     public void eliminarproducto() {
@@ -192,8 +192,13 @@ public class ControladorFactura {
         } else {
             mTabla.removeRow(fila);
         }
+        totales();
+        int canfilas = vista.getTbdetallefactura().getRowCount();
+        if(canfilas == 0){
+            vista.getTxtTotal().setText("");
+        }
     }
-    
+
     public void leercodigodeBarras() {
         new Thread(() -> {
             try {
@@ -223,5 +228,17 @@ public class ControladorFactura {
                 Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
             }
         }).start();
+    }
+
+    public void totales() {
+        int canfilas = vista.getTbdetallefactura().getRowCount();
+        int sumatotal = 0;
+        for (int i = 0; i < canfilas; i++) {
+            if (!vista.getTbdetallefactura().getValueAt(i, 3).equals("")) {
+                sumatotal += Integer.parseInt(vista.getTbdetallefactura().getValueAt(i, 3).toString());
+                System.out.println(sumatotal);
+            }
+            vista.getTxtTotal().setText(String.valueOf(sumatotal));
+        }
     }
 }
