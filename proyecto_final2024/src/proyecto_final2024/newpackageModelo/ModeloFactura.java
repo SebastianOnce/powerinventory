@@ -16,6 +16,7 @@ import proyecto_final2024.newpackageControlador.controladorProveedor;
 public class ModeloFactura extends Factura {
 
     Conexion cpg = new Conexion();
+    
     static public String nombre, codigobarras;
     static public float precio;
 
@@ -199,4 +200,40 @@ public class ModeloFactura extends Factura {
             Logger.getLogger(ModeloFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public SQLException grabarEncabezadoFacura() {
+        String sql;
+        sql = "INSERT INTO public.factura(\n"
+                + "idfactura, id_administrador, fecha_factura, fac_estado,cedulacliente)\n"
+                + "	VALUES ( '" + getIdFctura()+ "', '" + getIdAdministrador()+ "', '" + getFechaFactura()+ "', '" + getEstado()+ "','" + getIdCliente()+ "')";
+        return cpg.accionDB(sql);
+    }
+    
+     public SQLException grabarDetalleFacura() {
+        String sql = "";
+        
+        Integer cantidadProductos = ControladorFactura.cantidadProductos;
+         for (int i = 0; i < cantidadProductos; i++) {
+             sql = "INSERT INTO public.detallefactura(id_productos, cantidad, precio,id_factura) VALUES ('" + ControladorFactura.idproductoV+ "', '" + ControladorFactura.cantidadProductosV+ "','" + ControladorFactura.precioproductosV+ "', '" + ControladorFactura.idFactura+ "')";
+         }
+        return cpg.accionDB(sql);
+    }
+     
+     public static String generarCodigoFacrura(){
+         Conexion cpg = new Conexion();
+         
+         String sql;
+         sql = "SELECT max(idfactura)+1 as codigo FROM factura";
+         ResultSet rs = cpg.consultaDB(sql);
+        try {
+            rs.next();
+            String codigoFactura = rs.getString("codigo");
+            System.out.println(codigoFactura);
+            rs.close();
+            return codigoFactura;
+        } catch (SQLException ex) {
+            Logger.getLogger(ModeloFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+     }
 }

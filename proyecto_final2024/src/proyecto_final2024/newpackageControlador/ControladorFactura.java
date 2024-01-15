@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +25,7 @@ import proyecto_final2024.newpackageModelo.Producto;
 import proyecto_final2024.newpackageModelo.Proveedor;
 import static proyecto_final2024.newpackageControlador.controladorProveedor.cedulaCienteBuscado;
 import proyecto_final2024.newpackageModelo.Conexion;
+import proyecto_final2024.newpackageModelo.ModeloLogin;
 import proyecto_final2024.newpackageVista.VistaFacrura;
 
 /**
@@ -36,7 +38,8 @@ public class ControladorFactura {
 
     static public String cedigo, nombre, apellido, cedula;
     static public String codigobarras, nombreProducto, precio, cantidad;
-    static public String codigoBuscar;
+    static public String codigoBuscar, idFactura;
+    public static int idproductoV, cantidadProductosV;
 
     public Socket s;
     public ServerSocket ssk;
@@ -52,18 +55,18 @@ public class ControladorFactura {
     public void inicarControl() {
         listarProveedores();
         leercodigodeBarras();
+        vista.getTxtcodigoFactura().setText(ModeloFactura.generarCodigoFacrura());
+        vista.getTxtnombreAdmin().setText(ControladorLogin.usuariosaux);
+        vista.getTxtcodigoAdmin().setText(ControladorLogin.id);
+        
         vista.getTxtcodigoproducto().addActionListener(l -> obtenerProduto());
         vista.getBtnAbrirProductos().addActionListener(l -> buscarProductos());
-        vista.getBtnnuevo().addActionListener(l -> crearFactura());
         vista.getBtnbuscarcliente().addActionListener(l -> buscarClientes());
         vista.getBtnAceptarbCLIENTE().addActionListener(l -> enviarDatosCliente());
         vista.getBtnaceptarProductos().addActionListener(l -> enviarcodigoProducto());
         vista.getBtnanadir().addActionListener(l -> añadirProductos());
         vista.getQuitar().addActionListener(l -> eliminarproducto());
-
-    }
-
-    public void crearFactura() {
+        vista.getBtnguardar().addActionListener(l -> crearEncabeszado());
 
     }
 
@@ -241,4 +244,51 @@ public class ControladorFactura {
             vista.getTxtTotal().setText(String.valueOf(sumatotal));
         }
     }
+    
+    public void crearEncabeszado(){
+            idFactura= vista.getTxtcodigoFactura().getText();
+            String idCliente = vista.getTxtcedulacliente().getText();
+            String idadmin = vista.getTxtcodigoAdmin().getText();
+            Date fecha = vista.getDtFecha().getDate();
+            long auxFecha = fecha.getTime();
+            java.sql.Date fechaFinal = new java.sql.Date(auxFecha);
+            String estado = vista.getLblEstado().getText();
+
+            ModeloFactura fac = new ModeloFactura();
+            fac.setIdFctura(idFactura);
+            fac.setIdCliente(idCliente);
+            fac.setIdAdministrador(idadmin);
+            fac.setFechaFactura(fechaFinal);
+            fac.setEstado(estado);
+
+            if (fac.grabarEncabezadoFacura()== null) {
+                JOptionPane.showMessageDialog(null, "Cabezera creada con exito");
+                guardarDetalleFactura();
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo crear al proveedor");
+            }
+    }
+    public static Integer cantidadProductos;
+    
+    
+    public static float precioproductosV;
+    
+    public void guardarDetalleFactura(){
+        ModeloFactura fac = new ModeloFactura();
+        cantidadProductos = vista.getTbdetallefactura().getRowCount();
+        
+        for (int i = 0; i < vista.getTbdetallefactura().getRowCount(); i++) {
+            idproductoV = Integer.parseInt(vista.getTbdetallefactura().getValueAt(i, 0).toString());
+            cantidadProductosV = Integer.parseInt(vista.getTbdetallefactura().getValueAt(i, 3).toString());
+            precioproductosV = Float.valueOf(vista.getTbdetallefactura().getValueAt(i, 2).toString());
+            if (fac.grabarDetalleFacura()== null) {
+                JOptionPane.showMessageDialog(null, "Detalle creado con exito");
+               
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo crear el detalle");
+            }
+        }
+        
+    }
+    
 }

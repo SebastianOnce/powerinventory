@@ -50,6 +50,7 @@ public class controladorProducto {
         vista.getBtnELIMINAR().addActionListener(l -> EliminarProducto());
         vista.getBtnGuardar().addActionListener(l -> CrearModificarProducto());
         vista.getBtnBUSCAR().addActionListener(l -> buscarProducto());
+        vista.getBtnSalir().addActionListener(l -> salir());
         vista.getTblproductos().addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 llenarCampos();
@@ -70,7 +71,7 @@ public class controladorProducto {
                 });
             }
         });
-        leercodigodeBarras();
+        leercodigodeBarras(true);
     }
 
     private void abrirDialogo(boolean nuevo) {
@@ -262,8 +263,9 @@ public class controladorProducto {
         });
     }
     
-    public void leercodigodeBarras() {
-        new Thread(() -> {
+    public void leercodigodeBarras(Boolean activo) {
+        if (activo == true) {
+            new Thread(() -> {
             try {
                 System.out.println("entro");
                 ssk = new ServerSocket(8000);
@@ -291,5 +293,11 @@ public class controladorProducto {
                 Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
             }
         }).start();
+        }
+    }
+    
+    public void salir(){
+        leercodigodeBarras(false);
+        vista.dispose();
     }
 }

@@ -5,6 +5,7 @@
  */
 package proyecto_final2024.newpackageVista;
 
+import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -64,9 +65,6 @@ public class VistaFacrura extends javax.swing.JFrame {
         return btnimprimir;
     }
 
-    public JButton getBtnnuevo() {
-        return btnnuevo;
-    }
 
     public JDialog getjDialogClientes() {
         return jDialogClientes;
@@ -101,10 +99,15 @@ public class VistaFacrura extends javax.swing.JFrame {
         return tbdetallefactura;
     }
 
-    public JTextField getTxtFecha() {
-        return txtFecha;
+    public JLabel getLblEstado() {
+        return lblEstado;
     }
 
+    public JDateChooser getDtFecha() {
+        return dtFecha;
+    }
+
+    
     public JTextField getTxtFechaInicio() {
         return txtFechaInicio;
     }
@@ -204,9 +207,11 @@ public class VistaFacrura extends javax.swing.JFrame {
         txtnombreAdmin = new javax.swing.JLabel();
         txtcodigoFactura = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtFecha = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        lblEstado = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        dtFecha = new com.toedter.calendar.JDateChooser();
+        lbl = new javax.swing.JLabel();
+        txtcodigoAdmin1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -231,7 +236,6 @@ public class VistaFacrura extends javax.swing.JFrame {
         txtiva = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
-        btnnuevo = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
         btnguardar = new javax.swing.JButton();
         btnimprimir = new javax.swing.JButton();
@@ -410,27 +414,29 @@ public class VistaFacrura extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 204, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtcodigoAdmin.setText("Id Usuario");
+        txtcodigoAdmin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtcodigoAdmin.setText("1");
 
+        txtnombreAdmin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtnombreAdmin.setText("Usuario");
 
         jLabel9.setText("Fecha");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel10.setText("Pendiente");
+        lblEstado.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblEstado.setText("Pendiente");
 
         jLabel6.setText("Id factura");
+
+        lbl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl.setText("Usuario:");
+
+        txtcodigoAdmin1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtcodigoAdmin1.setText("Codigo:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(492, Short.MAX_VALUE)
-                .addComponent(txtcodigoAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(txtnombreAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,12 +446,22 @@ public class VistaFacrura extends javax.swing.JFrame {
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtcodigoFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtcodigoFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(jLabel10)))
-                .addContainerGap(485, Short.MAX_VALUE))
+                        .addComponent(lblEstado)))
+                .addContainerGap(455, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtcodigoAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtcodigoAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtnombreAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,15 +471,17 @@ public class VistaFacrura extends javax.swing.JFrame {
                     .addComponent(txtcodigoFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(lblEstado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtnombreAdmin)
                     .addComponent(txtcodigoAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtnombreAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtcodigoAdmin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl))
                 .addContainerGap())
         );
 
@@ -544,7 +562,7 @@ public class VistaFacrura extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addComponent(jLabel4))
                     .addComponent(txtcedulacliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
@@ -607,9 +625,6 @@ public class VistaFacrura extends javax.swing.JFrame {
         txtTotal.setEnabled(false);
         jPanel3.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 170, 30));
 
-        btnnuevo.setText("Nuevo");
-        jPanel3.add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
-
         btncancelar.setText("Cancelar");
         jPanel3.add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 320, -1, -1));
 
@@ -645,8 +660,7 @@ public class VistaFacrura extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -665,12 +679,11 @@ public class VistaFacrura extends javax.swing.JFrame {
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnimprimir;
-    private javax.swing.JButton btnnuevo;
+    private com.toedter.calendar.JDateChooser dtFecha;
     private javax.swing.JDialog jDialogClientes;
     private javax.swing.JDialog jDialogFacturas;
     private javax.swing.JDialog jDialogProductos;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -691,19 +704,21 @@ public class VistaFacrura extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel lbl;
+    private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblNombreProducto;
     private javax.swing.JButton quitar;
     private javax.swing.JTable tbClientes;
     private javax.swing.JTable tbFacturabuscada;
     private javax.swing.JTable tbProductos;
     private javax.swing.JTable tbdetallefactura;
-    private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtFechaInicio;
     private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtapellidocliente;
     private javax.swing.JTextField txtcantidadproducto;
     private javax.swing.JTextField txtcedulacliente;
     private javax.swing.JLabel txtcodigoAdmin;
+    private javax.swing.JLabel txtcodigoAdmin1;
     private javax.swing.JTextField txtcodigoFactura;
     private javax.swing.JTextField txtcodigocliente;
     private javax.swing.JTextField txtcodigoproducto;

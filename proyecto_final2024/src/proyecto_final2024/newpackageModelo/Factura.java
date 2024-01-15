@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author elshi
  */
-public class Factura {
+public class Factura{
     
     String idFctura;
     String idCliente;
