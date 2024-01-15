@@ -45,6 +45,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         return btnProducos;
     }
 
+    public JButton getBtnFactura() {
+        return btnFactura;
+    }
+
     
     
     @SuppressWarnings("unchecked")
@@ -61,6 +65,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         btnProducos = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
         btnCategoria = new javax.swing.JButton();
+        btnFactura = new javax.swing.JButton();
         dktPrincipal = new javax.swing.JDesktopPane();
         jPanel2 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -110,6 +115,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         btnCategoria.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCategoria.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnCategoria);
+
+        btnFactura.setText("Factura");
+        btnFactura.setFocusable(false);
+        btnFactura.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnFactura.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnFactura);
 
         javax.swing.GroupLayout dktPrincipalLayout = new javax.swing.GroupLayout(dktPrincipal);
         dktPrincipal.setLayout(dktPrincipalLayout);
@@ -169,6 +180,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnCategoria;
     private javax.swing.JButton btnEmpresa;
+    private javax.swing.JButton btnFactura;
     private javax.swing.JButton btnProducos;
     private javax.swing.JButton btnProveedores;
     private javax.swing.JDesktopPane dktPrincipal;
