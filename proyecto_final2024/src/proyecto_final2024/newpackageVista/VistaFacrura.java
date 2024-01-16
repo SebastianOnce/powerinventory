@@ -420,6 +420,8 @@ public class VistaFacrura extends javax.swing.JFrame {
         txtnombreAdmin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtnombreAdmin.setText("Usuario");
 
+        txtcodigoFactura.setEnabled(false);
+
         jLabel9.setText("Fecha");
 
         lblEstado.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

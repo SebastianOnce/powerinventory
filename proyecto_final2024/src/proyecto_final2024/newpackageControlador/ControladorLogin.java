@@ -28,6 +28,7 @@ public class ControladorLogin {
     
     public void inicarControladorLogin(){
         login.getBtnInicarSesion().addActionListener(l-> iniciarSesion());
+        login.getPswContrasena().addActionListener(l->iniciarSesion());
     }
     
     public void iniciarSesion(){

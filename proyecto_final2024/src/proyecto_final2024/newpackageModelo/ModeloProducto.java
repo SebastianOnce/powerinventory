@@ -132,7 +132,7 @@ public class ModeloProducto extends Producto {
     }
 
     public static void cargarComboBox(JComboBox comboBox, String sql, String errorMsg) {
-        try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/super", "postgres", "1234");
+        try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/superinver", "postgres", "1234");
                 PreparedStatement preparedStatement = con.prepareStatement(sql);
                 ResultSet resultSet = preparedStatement.executeQuery()) {
             System.out.println("Consulta SQL: " + sql);

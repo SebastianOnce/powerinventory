@@ -5,7 +5,6 @@
 package proyecto_final2024.newpackageModelo;
 
 import java.sql.Statement;
-import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.DriverManager;
@@ -19,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class Conexion {
     
-    String cadenaConexion = "jdbc:postgresql://localhost:5432/super";
+    String cadenaConexion = "jdbc:postgresql://localhost:5432/superinver";
     String userPG = "postgres";
     String passPG = "1234";
     

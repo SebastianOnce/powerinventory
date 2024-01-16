@@ -49,6 +49,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         return btnFactura;
     }
 
+    public JButton getBtnCliente() {
+        return btnCliente;
+    }
+
     
     
     @SuppressWarnings("unchecked")
@@ -60,11 +64,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JToolBar.Separator();
         btnAdmin = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
+        btnCliente = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JToolBar.Separator();
         btnEmpresa = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         btnProducos = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
         btnCategoria = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JToolBar.Separator();
         btnFactura = new javax.swing.JButton();
         dktPrincipal = new javax.swing.JDesktopPane();
         jPanel2 = new javax.swing.JPanel();
@@ -93,6 +100,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jToolBar1.add(btnAdmin);
         jToolBar1.add(jSeparator2);
 
+        btnCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-cliente-40.png"))); // NOI18N
+        btnCliente.setToolTipText("Ventana cliente");
+        btnCliente.setFocusable(false);
+        btnCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnCliente);
+        jToolBar1.add(jSeparator6);
+
         btnEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-empresa-40.png"))); // NOI18N
         btnEmpresa.setToolTipText("Ventana de empresas");
         btnEmpresa.setFocusable(false);
@@ -115,8 +130,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         btnCategoria.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCategoria.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnCategoria);
+        jToolBar1.add(jSeparator5);
 
-        btnFactura.setText("Factura");
+        btnFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-factura-40.png"))); // NOI18N
+        btnFactura.setToolTipText("Crear factura");
         btnFactura.setFocusable(false);
         btnFactura.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnFactura.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -179,6 +196,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnCategoria;
+    private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnEmpresa;
     private javax.swing.JButton btnFactura;
     private javax.swing.JButton btnProducos;
@@ -192,6 +210,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
+    private javax.swing.JToolBar.Separator jSeparator5;
+    private javax.swing.JToolBar.Separator jSeparator6;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }
