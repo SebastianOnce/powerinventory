@@ -265,6 +265,7 @@ public class controladorProducto {
     
     public void leercodigodeBarras(Boolean activo) {
         if (activo == true) {
+            vaciarFields();
             new Thread(() -> {
             try {
                 System.out.println("entro");
@@ -280,11 +281,15 @@ public class controladorProducto {
                     if (vista.getTxtBUSCAR().getText().equals("")) {
                         vista.getTxtBUSCAR().setText(mensaje);
                         codigoBuscar = vista.getTxtBUSCAR().getText();
-                    } else {
+                    } else if(!vista.getTxtBUSCAR().getText().equals("")){
                         vista.getTxtBUSCAR().setText("");
                         vista.getTxtBUSCAR().setText(mensaje);
-
                         codigoBuscar = vista.getTxtBUSCAR().getText();
+                    }
+                    if(vista.getjDialog1().getTitle().contentEquals("Editar producto")) {
+                         vista.getTxtcodigobarras().setText(mensaje);
+                    }else if (vista.getjDialog1().getTitle().contentEquals("Crear nuevo producto")) {
+                        vista.getTxtcodigobarras().setText(mensaje);
                     }
                     System.out.println("salio");
                 }

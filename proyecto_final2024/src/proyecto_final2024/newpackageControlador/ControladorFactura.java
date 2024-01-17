@@ -41,6 +41,9 @@ public class ControladorFactura {
     static public String codigoBuscar, idFactura;
     public static int idproductoV, cantidadProductosV;
 
+    public static Integer cantidadProductos;
+
+    public static float precioproductosV;
     public Socket s;
     public ServerSocket ssk;
     public InputStreamReader isr;
@@ -58,7 +61,7 @@ public class ControladorFactura {
         vista.getTxtcodigoFactura().setText(ModeloFactura.generarCodigoFacrura());
         vista.getTxtnombreAdmin().setText(ControladorLogin.usuariosaux);
         vista.getTxtcodigoAdmin().setText(ControladorLogin.id);
-        
+
         vista.getTxtcodigoproducto().addActionListener(l -> obtenerProduto());
         vista.getBtnAbrirProductos().addActionListener(l -> buscarProductos());
         vista.getBtnbuscarcliente().addActionListener(l -> buscarClientes());
@@ -197,40 +200,9 @@ public class ControladorFactura {
         }
         totales();
         int canfilas = vista.getTbdetallefactura().getRowCount();
-        if(canfilas == 0){
+        if (canfilas == 0) {
             vista.getTxtTotal().setText("");
         }
-    }
-
-    public void leercodigodeBarras() {
-        new Thread(() -> {
-            try {
-                System.out.println("entro");
-                ssk = new ServerSocket(8000);
-
-                while (true) {
-                    s = ssk.accept();
-                    isr = new InputStreamReader(s.getInputStream());
-                    br = new BufferedReader(isr);
-                    mensaje = br.readLine();
-
-                    System.out.println(mensaje);
-                    if (vista.getTxtcodigoproducto().getText().equals("")) {
-                        vista.getTxtcodigoproducto().setText(mensaje);
-                        codigoBuscar = vista.getTxtcodigoproducto().getText();
-                    } else {
-                        vista.getTxtcodigoproducto().setText("");
-                        vista.getTxtcodigoproducto().setText(mensaje);
-
-                        codigoBuscar = vista.getTxtcodigoproducto().getText();
-                    }
-                    System.out.println("salio");
-                }
-
-            } catch (IOException e) {
-                Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }).start();
     }
 
     public void totales() {
@@ -244,51 +216,97 @@ public class ControladorFactura {
             vista.getTxtTotal().setText(String.valueOf(sumatotal));
         }
     }
-    
-    public void crearEncabeszado(){
-            idFactura= vista.getTxtcodigoFactura().getText();
-            String idCliente = vista.getTxtcedulacliente().getText();
-            String idadmin = vista.getTxtcodigoAdmin().getText();
-            Date fecha = vista.getDtFecha().getDate();
-            long auxFecha = fecha.getTime();
-            java.sql.Date fechaFinal = new java.sql.Date(auxFecha);
-            String estado = vista.getLblEstado().getText();
 
-            ModeloFactura fac = new ModeloFactura();
-            fac.setIdFctura(idFactura);
-            fac.setIdCliente(idCliente);
-            fac.setIdAdministrador(idadmin);
-            fac.setFechaFactura(fechaFinal);
-            fac.setEstado(estado);
+    public void crearEncabeszado() {
+        idFactura = vista.getTxtcodigoFactura().getText();
+        String idCliente = vista.getTxtcedulacliente().getText();
+        String idadmin = vista.getTxtcodigoAdmin().getText();
+        Date fecha = vista.getDtFecha().getDate();
+        long auxFecha = fecha.getTime();
+        java.sql.Date fechaFinal = new java.sql.Date(auxFecha);
+        String estado = vista.getLblEstado().getText();
 
-            if (fac.grabarEncabezadoFacura()== null) {
-                JOptionPane.showMessageDialog(null, "Cabezera creada con exito");
-                guardarDetalleFactura();
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo crear al proveedor");
-            }
+        ModeloFactura fac = new ModeloFactura();
+        fac.setIdFctura(idFactura);
+        fac.setIdCliente(idCliente);
+        fac.setIdAdministrador(idadmin);
+        fac.setFechaFactura(fechaFinal);
+        fac.setEstado(estado);
+
+        if (fac.grabarEncabezadoFacura() == null) {
+            JOptionPane.showMessageDialog(null, "Cabezera creada con exito");
+            guardarDetalleFactura();
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo crear al proveedor");
+        }
     }
-    public static Integer cantidadProductos;
-    
-    
-    public static float precioproductosV;
-    
-    public void guardarDetalleFactura(){
+
+    public void guardarDetalleFactura() {
         ModeloFactura fac = new ModeloFactura();
         cantidadProductos = vista.getTbdetallefactura().getRowCount();
-        
+
         for (int i = 0; i < vista.getTbdetallefactura().getRowCount(); i++) {
             idproductoV = Integer.parseInt(vista.getTbdetallefactura().getValueAt(i, 0).toString());
             cantidadProductosV = Integer.parseInt(vista.getTbdetallefactura().getValueAt(i, 3).toString());
             precioproductosV = Float.valueOf(vista.getTbdetallefactura().getValueAt(i, 2).toString());
-            if (fac.grabarDetalleFacura()== null) {
+            if (fac.grabarDetalleFacura() == null) {
                 JOptionPane.showMessageDialog(null, "Detalle creado con exito");
-               
+
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo crear el detalle");
             }
         }
-        
     }
-    
+
+    public void leercodigodeBarras() {
+        // Crear un nuevo hilo utilizando una expresión lambda
+        new Thread(() -> {
+            try {
+                System.out.println("entro");
+                // Crear un ServerSocket que escuche en el puerto 8000
+                ssk = new ServerSocket(8000);
+
+                // Bucle que se ejecutará continuamente para aceptar conexiones entrantes
+                while (true) {
+                    // Esperar a que llegue una conexión y obtener un Socket para comunicarse con el cliente
+                    s = ssk.accept();
+
+                    // Crear un InputStreamReader para leer los datos que llegan a través del Socket
+                    isr = new InputStreamReader(s.getInputStream());
+
+                    // Crear un BufferedReader para leer líneas completas de texto del InputStreamReader
+                    br = new BufferedReader(isr);
+
+                    // Leer una línea de texto del BufferedReader, que representa un mensaje del cliente
+                    mensaje = br.readLine();
+
+                    // Imprimir el mensaje recibido en la consola
+                    System.out.println(mensaje);
+
+                    // Acceder al campo de texto llamado "txtcodigoproducto" en el objeto "vista" y verificar su contenido
+                    if (vista.getTxtcodigoproducto().getText().equals("")) {
+                        // Si el campo está vacío, establecer su texto con el mensaje recibido
+                        vista.getTxtcodigoproducto().setText(mensaje);
+                        // Asignar el mensaje a la variable "codigoBuscar"
+                        codigoBuscar = vista.getTxtcodigoproducto().getText();
+                    } else {
+                        // Si el campo no está vacío, borrar su contenido actual
+                        vista.getTxtcodigoproducto().setText("");
+                        // Establecer su texto con el mensaje recibido
+                        vista.getTxtcodigoproducto().setText(mensaje);
+                        // Asignar el mensaje a la variable "codigoBuscar"
+                        codigoBuscar = vista.getTxtcodigoproducto().getText();
+                    }
+
+                    // Imprimir un mensaje indicando que se ha procesado el mensaje recibido
+                    System.out.println("salio");
+                }
+
+            } catch (IOException e) {
+                // Capturar cualquier excepción de tipo IOException que pueda ocurrir durante la ejecución del servidor
+                Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }).start(); // Iniciar el hilo
+
+    }
 }

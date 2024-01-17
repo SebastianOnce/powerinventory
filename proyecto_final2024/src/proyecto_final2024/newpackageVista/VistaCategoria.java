@@ -236,7 +236,7 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
         jLabel10.setBackground(new java.awt.Color(51, 51, 0));
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 0));
-        jLabel10.setText("Ventan de Productos");
+        jLabel10.setText("Ventan de categoria");
 
         btnSalir.setText("Salir");
 
